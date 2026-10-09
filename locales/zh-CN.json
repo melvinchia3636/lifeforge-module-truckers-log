@@ -1,0 +1,25 @@
+{
+  "title": "ETS2 记录",
+  "description": "记录《欧洲卡车模拟2》和《美国卡车模拟》的遥测数据。",
+  "empty": {
+    "records": {
+      "title": "尚无记录",
+      "description": "你的卡车代理记录的遥测数据将显示在这里。"
+    }
+  },
+  "buttons": {
+    "ingestToken": "接入令牌",
+    "generateToken": "生成令牌",
+    "rotateToken": "轮换令牌"
+  },
+  "modals": {
+    "ingestToken": {
+      "title": "接入令牌",
+      "description": "将你的记录代理指向此服务器，并使用下方令牌进行验证。原始令牌仅在生成后显示一次。",
+      "masked": "当前令牌以 ••••{{last4}} 结尾。",
+      "noToken": "尚未生成接入令牌。",
+      "revealWarning": "请立即复制此令牌——之后将无法再次查看。",
+      "copied": "令牌已复制到剪贴板。"
+    }
+  }
+}

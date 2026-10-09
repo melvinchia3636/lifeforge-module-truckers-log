@@ -1,0 +1,25 @@
+{
+  "title": "ETS2 記錄",
+  "description": "記錄《歐洲卡車模擬2》與《美國卡車模擬》的遙測資料。",
+  "empty": {
+    "records": {
+      "title": "尚無記錄",
+      "description": "你的卡車代理所記錄的遙測資料將顯示在這裡。"
+    }
+  },
+  "buttons": {
+    "ingestToken": "接入權杖",
+    "generateToken": "產生權杖",
+    "rotateToken": "輪替權杖"
+  },
+  "modals": {
+    "ingestToken": {
+      "title": "接入權杖",
+      "description": "將你的記錄代理指向此伺服器，並使用下方權杖進行驗證。原始權杖僅在產生後顯示一次。",
+      "masked": "目前權杖以 ••••{{last4}} 結尾。",
+      "noToken": "尚未產生接入權杖。",
+      "revealWarning": "請立即複製此權杖——之後將無法再次查看。",
+      "copied": "權杖已複製到剪貼簿。"
+    }
+  }
+}

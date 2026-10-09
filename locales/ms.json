@@ -1,0 +1,25 @@
+{
+  "title": "ETS2 Record",
+  "description": "Rakam telemetri Euro Truck Simulator 2 dan American Truck Simulator.",
+  "empty": {
+    "records": {
+      "title": "Tiada Rekod Lagi",
+      "description": "Telemetri yang direkodkan oleh agen trak anda akan muncul di sini."
+    }
+  },
+  "buttons": {
+    "ingestToken": "Token Masukan",
+    "generateToken": "Jana Token",
+    "rotateToken": "Putar Token"
+  },
+  "modals": {
+    "ingestToken": {
+      "title": "Token Masukan",
+      "description": "Halakan agen rakaman anda ke pelayan ini dan sahkan dengan token di bawah. Token mentah dipaparkan sekali sahaja selepas dijana.",
+      "masked": "Token semasa berakhir dengan ••••{{last4}}.",
+      "noToken": "Tiada token masukan dijana lagi.",
+      "revealWarning": "Salin token ini sekarang - anda tidak akan dapat melihatnya lagi.",
+      "copied": "Token disalin ke papan klip."
+    }
+  }
+}

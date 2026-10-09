@@ -1,0 +1,25 @@
+{
+  "title": "ETS2 Record",
+  "description": "Record Euro Truck Simulator 2 and American Truck Simulator telemetry.",
+  "empty": {
+    "records": {
+      "title": "No Records Yet",
+      "description": "Telemetry recorded by your trucking agent will appear here."
+    }
+  },
+  "buttons": {
+    "ingestToken": "Ingest Token",
+    "generateToken": "Generate Token",
+    "rotateToken": "Rotate Token"
+  },
+  "modals": {
+    "ingestToken": {
+      "title": "Ingest Token",
+      "description": "Point your recording agent at this server and authenticate it with the token below. The raw token is shown only once, right after it is generated.",
+      "masked": "Current token ends with ••••{{last4}}.",
+      "noToken": "No ingest token has been generated yet.",
+      "revealWarning": "Copy this token now - you won't be able to see it again.",
+      "copied": "Token copied to clipboard."
+    }
+  }
+}
