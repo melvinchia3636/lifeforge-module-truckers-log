@@ -1,10 +1,10 @@
 {
-  "name": "@lifeforge/melvinchia3636--ets2-record",
-  "displayName": "ETS2 Record",
+  "name": "@lifeforge/melvinchia3636--truckers-log",
+  "displayName": "Trucker's Log",
   "version": "0.0.1",
   "type": "module",
   "author": "Melvin Chia <melvinchia623600@gmail.com>",
-  "description": "Record Euro Truck Simulator 2 and American Truck Simulator telemetry.",
+  "description": "Record your ETS2 & ATS jobs, routes and stats.",
   "scripts": {
     "typecheck": "pnpm run typecheck:client && pnpm run typecheck:server",
     "typecheck:client": "cd client && tsc",

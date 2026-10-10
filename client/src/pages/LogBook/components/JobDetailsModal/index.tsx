@@ -13,7 +13,7 @@ import OverviewSection from './sections/OverviewSection'
 import RouteSection from './sections/RouteSection'
 import VehicleSection from './sections/VehicleSection'
 
-const NAMESPACE = 'apps.melvinchia3636--ets2-record'
+const NAMESPACE = 'apps.melvinchia3636--truckers-log'
 
 function JobDetailsModal({
   data: { id },

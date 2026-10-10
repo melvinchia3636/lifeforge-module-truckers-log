@@ -4,7 +4,7 @@ import * as schema from './schema.drizzle'
 
 const forge = createForgeContractBuilder({
   schema,
-  modulePathAlias: 'ets2-record'
+  modulePathAlias: 'truckers-log'
 })
 
 export default forge

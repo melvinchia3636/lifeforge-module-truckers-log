@@ -1,6 +1,6 @@
 {
-  "title": "ETS2 記錄",
-  "description": "記錄《歐洲卡車模擬2》與《美國卡車模擬》的遙測資料。",
+  "title": "卡車司機日誌",
+  "description": "記錄你的 ETS2 與 ATS 任務、路線與統計數據。",
   "subsections": {
     "dashboard": {
       "title": "儀表板",

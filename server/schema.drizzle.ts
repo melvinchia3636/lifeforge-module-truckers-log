@@ -15,22 +15,22 @@ import { createModuleTable } from '@lifeforge/drizzle'
 
 const pgTable = createModuleTable()
 
-export const gameEnum = pgEnum('ets2_record_game', ['ets2', 'ats', 'unknown'])
+export const gameEnum = pgEnum('truckers_log_game', ['ets2', 'ats', 'unknown'])
 
-export const sessionStatusEnum = pgEnum('ets2_record_session_status', [
+export const sessionStatusEnum = pgEnum('truckers_log_session_status', [
   'active',
   'completed',
   'interrupted'
 ])
 
-export const jobStatusEnum = pgEnum('ets2_record_job_status', [
+export const jobStatusEnum = pgEnum('truckers_log_job_status', [
   'active',
   'delivered',
   'cancelled',
   'interrupted'
 ])
 
-export const eventKindEnum = pgEnum('ets2_record_event_kind', [
+export const eventKindEnum = pgEnum('truckers_log_event_kind', [
   'fine',
   'refuel',
   'tollgate',

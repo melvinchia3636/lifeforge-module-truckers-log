@@ -1,6 +1,6 @@
 {
-  "title": "ETS2 Record",
-  "description": "Record Euro Truck Simulator 2 and American Truck Simulator telemetry.",
+  "title": "Trucker's Log",
+  "description": "Record your ETS2 & ATS jobs, routes and stats.",
   "subsections": {
     "dashboard": {
       "title": "Dashboard",
