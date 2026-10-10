@@ -1,0 +1,56 @@
+import { useModuleTranslation } from '@lifeforge/localization'
+import { Text } from '@lifeforge/ui'
+
+import DetailRow from '../components/DetailRow'
+import Section from '../components/Section'
+import { useJobDetails } from '../contexts/JobDetailsContext'
+
+function CargoSection() {
+  const job = useJobDetails()
+  const { t } = useModuleTranslation()
+
+  const tonnage =
+    job.cargo_mass_kg > 0 ? `${(job.cargo_mass_kg / 1000).toFixed(1)} t` : null
+
+  const rows = [
+    {
+      icon: 'tabler:package',
+      label: 'cargo',
+      children: (
+        <Text align={{ sm: 'right' }}>
+          {job.cargo || t('jobs.unknownCargo')}
+          {tonnage ? ` (${tonnage})` : ''}
+        </Text>
+      )
+    },
+    job.unit_count > 0 && {
+      icon: 'tabler:stack-2',
+      label: 'units',
+      children: (
+        <Text align={{ sm: 'right' }}>
+          {job.unit_count} × {(job.unit_mass_kg / 1000).toFixed(1)} t
+        </Text>
+      )
+    },
+    {
+      icon: 'tabler:alert-hexagon',
+      label: 'cargoDamage',
+      children: (
+        <Text
+          align={{ sm: 'right' }}
+          color={job.cargo_damage > 0 ? 'dangerous' : undefined}
+        >
+          {`${(job.cargo_damage * 100).toFixed(1)}%`}
+        </Text>
+      )
+    }
+  ]
+
+  return (
+    <Section title="cargo">
+      <DetailRow rows={rows} />
+    </Section>
+  )
+}
+
+export default CargoSection

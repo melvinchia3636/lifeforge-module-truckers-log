@@ -1,25 +1,135 @@
 {
   "title": "ETS2 Record",
   "description": "Record Euro Truck Simulator 2 and American Truck Simulator telemetry.",
+  "subsections": {
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "An overview of your recorded trucking activity."
+    },
+    "logBook": {
+      "title": "Log Book",
+      "description": "Every job you've taken, recorded from telemetry."
+    },
+    "map": {
+      "title": "Map",
+      "description": "View your recorded routes on the map."
+    }
+  },
   "empty": {
     "records": {
       "title": "No Records Yet",
       "description": "Telemetry recorded by your trucking agent will appear here."
+    },
+    "token": {
+      "title": "No Ingest Token",
+      "description": "Generate a token to start streaming telemetry from your recording agent."
+    },
+    "dashboard": {
+      "title": "Nothing Here Yet",
+      "description": "Your driving overview will appear here soon."
+    },
+    "map": {
+      "title": "No Jobs Yet",
+      "description": "Recorded jobs will appear here."
     }
   },
   "buttons": {
     "ingestToken": "Ingest Token",
     "generateToken": "Generate Token",
-    "rotateToken": "Rotate Token"
+    "rotateToken": "Rotate Token",
+    "showInMap": "Show in Map"
+  },
+  "jobs": {
+    "unknownCargo": "Unknown cargo",
+    "truck": "Truck",
+    "distance": "Distance",
+    "duration": "Duration",
+    "revenue": "Revenue",
+    "xp": "XP",
+    "date": "Date",
+    "status": {
+      "active": "In progress",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled",
+      "interrupted": "Interrupted"
+    },
+    "market": {
+      "quick_job": "Quick Job",
+      "cargo_market": "Cargo Market",
+      "external_contracts": "External Contracts"
+    },
+    "game": {
+      "ets2": "ETS2",
+      "ats": "ATS",
+      "unknown": "Unknown"
+    }
+  },
+  "details": {
+    "origin": "Origin",
+    "destination": "Destination",
+    "sender": "Sender",
+    "receiver": "Receiver",
+    "status": "Status",
+    "game": "Game",
+    "market": "Market",
+    "special": "Special Transport",
+    "cargo": "Cargo",
+    "units": "Units",
+    "cargoDamage": "Cargo Damage",
+    "revenue": "Revenue",
+    "income": "Income",
+    "penalty": "Penalty",
+    "xp": "XP",
+    "distance": "Distance",
+    "duration": "Duration",
+    "started": "Started",
+    "finished": "Finished",
+    "planned": "planned",
+    "recorded": "recorded",
+    "inGame": "in-game",
+    "realTime": "real time",
+    "truck": "Truck",
+    "plate": "Plate",
+    "avgSpeed": "Average Speed",
+    "maxSpeed": "Max Speed",
+    "fuel": "Fuel Used",
+    "adblue": "AdBlue Used",
+    "idle": "Idle Time",
+    "samples": "Telemetry Samples",
+    "yes": "Yes",
+    "automation": "Automation",
+    "autopark": "Auto Park",
+    "autoload": "Auto Load",
+    "fine": "Fine",
+    "refuel": "Refuel",
+    "tollgate": "Toll Gate",
+    "ferry": "Ferry",
+    "train": "Train",
+    "sections": {
+      "route": "Route",
+      "overview": "Overview",
+      "cargo": "Cargo",
+      "economy": "Economy",
+      "journey": "Journey",
+      "events": "Events",
+      "vehicle": "Vehicle",
+      "driving": "Driving"
+    }
   },
   "modals": {
+    "jobDetails": {
+      "title": "Job Details"
+    },
     "ingestToken": {
       "title": "Ingest Token",
       "description": "Point your recording agent at this server and authenticate it with the token below. The raw token is shown only once, right after it is generated.",
       "masked": "Current token ends with ••••{{last4}}.",
-      "noToken": "No ingest token has been generated yet.",
       "revealWarning": "Copy this token now - you won't be able to see it again.",
-      "copied": "Token copied to clipboard."
+      "copied": "Token copied to clipboard.",
+      "rotateConfirm": {
+        "title": "Rotate Ingest Token?",
+        "description": "Generating a new token immediately invalidates the current one. Any recording agent still using the old token will stop streaming until it is updated."
+      }
     }
   }
 }

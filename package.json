@@ -13,11 +13,20 @@
     "build:client": "cd client && vite build",
     "build:server": "cd server && vite build"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "color": "^4.2.3",
+    "maplibre-gl": "^5.18.0",
+    "pmtiles": "^4.4.0",
+    "proj4": "^2.9.2",
+    "react-map-gl": "^8.0.4"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.6",
+    "@types/geojson": "^7946.0.16"
+  },
   "lifeforge": {
     "icon": "tabler:truck",
-    "category": "Lifestyle"
+    "category": "Games"
   },
   "peerDependencies": {
     "@lifeforge/api": "workspace:*",

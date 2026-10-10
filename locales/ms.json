@@ -1,25 +1,135 @@
 {
   "title": "ETS2 Record",
   "description": "Rakam telemetri Euro Truck Simulator 2 dan American Truck Simulator.",
+  "subsections": {
+    "dashboard": {
+      "title": "Papan Pemuka",
+      "description": "Gambaran keseluruhan aktiviti pemanduan trak anda."
+    },
+    "logBook": {
+      "title": "Buku Log",
+      "description": "Setiap kerja yang anda ambil, direkodkan daripada telemetri."
+    },
+    "map": {
+      "title": "Peta",
+      "description": "Lihat laluan yang direkodkan pada peta."
+    }
+  },
   "empty": {
     "records": {
       "title": "Tiada Rekod Lagi",
       "description": "Telemetri yang direkodkan oleh agen trak anda akan muncul di sini."
+    },
+    "token": {
+      "title": "Tiada Token Masukan",
+      "description": "Jana token untuk mula menstrim telemetri daripada agen rakaman anda."
+    },
+    "dashboard": {
+      "title": "Tiada Apa-apa Lagi",
+      "description": "Gambaran pemanduan anda akan muncul di sini tidak lama lagi."
+    },
+    "map": {
+      "title": "Tiada Kerja Lagi",
+      "description": "Kerja yang direkodkan akan muncul di sini."
     }
   },
   "buttons": {
     "ingestToken": "Token Masukan",
     "generateToken": "Jana Token",
-    "rotateToken": "Putar Token"
+    "rotateToken": "Putar Token",
+    "showInMap": "Papar dalam Peta"
+  },
+  "jobs": {
+    "unknownCargo": "Kargo tidak diketahui",
+    "truck": "Lori",
+    "distance": "Jarak",
+    "duration": "Tempoh",
+    "revenue": "Pendapatan",
+    "xp": "XP",
+    "date": "Tarikh",
+    "status": {
+      "active": "Sedang berjalan",
+      "delivered": "Dihantar",
+      "cancelled": "Dibatalkan",
+      "interrupted": "Tergendala"
+    },
+    "market": {
+      "quick_job": "Kerja Pantas",
+      "cargo_market": "Pasaran Kargo",
+      "external_contracts": "Kontrak Luaran"
+    },
+    "game": {
+      "ets2": "ETS2",
+      "ats": "ATS",
+      "unknown": "Tidak diketahui"
+    }
+  },
+  "details": {
+    "origin": "Asal",
+    "destination": "Destinasi",
+    "sender": "Penghantar",
+    "receiver": "Penerima",
+    "status": "Status",
+    "game": "Permainan",
+    "market": "Pasaran",
+    "special": "Pengangkutan Khas",
+    "cargo": "Kargo",
+    "units": "Unit",
+    "cargoDamage": "Kerosakan Kargo",
+    "revenue": "Pendapatan",
+    "income": "Pendapatan Kasar",
+    "penalty": "Denda",
+    "xp": "XP",
+    "distance": "Jarak",
+    "duration": "Tempoh",
+    "started": "Mula",
+    "finished": "Tamat",
+    "planned": "dirancang",
+    "recorded": "direkodkan",
+    "inGame": "dalam permainan",
+    "realTime": "masa nyata",
+    "truck": "Lori",
+    "plate": "Plat",
+    "avgSpeed": "Kelajuan Purata",
+    "maxSpeed": "Kelajuan Maksimum",
+    "fuel": "Bahan Api Digunakan",
+    "adblue": "AdBlue Digunakan",
+    "idle": "Masa Melahu",
+    "samples": "Sampel Telemetri",
+    "yes": "Ya",
+    "automation": "Automasi",
+    "autopark": "Parkir Auto",
+    "autoload": "Muat Auto",
+    "fine": "Denda",
+    "refuel": "Isi Minyak",
+    "tollgate": "Pintu Tol",
+    "ferry": "Feri",
+    "train": "Kereta Api",
+    "sections": {
+      "route": "Laluan",
+      "overview": "Gambaran Keseluruhan",
+      "cargo": "Kargo",
+      "economy": "Ekonomi",
+      "journey": "Perjalanan",
+      "events": "Peristiwa",
+      "vehicle": "Kenderaan",
+      "driving": "Pemanduan"
+    }
   },
   "modals": {
+    "jobDetails": {
+      "title": "Butiran Kerja"
+    },
     "ingestToken": {
       "title": "Token Masukan",
       "description": "Halakan agen rakaman anda ke pelayan ini dan sahkan dengan token di bawah. Token mentah dipaparkan sekali sahaja selepas dijana.",
       "masked": "Token semasa berakhir dengan ••••{{last4}}.",
-      "noToken": "Tiada token masukan dijana lagi.",
       "revealWarning": "Salin token ini sekarang - anda tidak akan dapat melihatnya lagi.",
-      "copied": "Token disalin ke papan klip."
+      "copied": "Token disalin ke papan klip.",
+      "rotateConfirm": {
+        "title": "Putar Token Masukan?",
+        "description": "Menjana token baharu akan terus membatalkan token semasa. Sebarang agen rakaman yang masih menggunakan token lama akan berhenti menstrim sehingga dikemas kini."
+      }
     }
   }
 }

@@ -1,0 +1,7 @@
+/* MapLibre's WebGL canvas is promoted to its own compositing layer, so ancestor
+   `border-radius`/`overflow`/`clip-path` clipping is frequently ignored by the
+   browser (the map only appears rounded during certain repaints). Applying the
+   radius to the canvas element itself clips it reliably. */
+.maplibregl-map .maplibregl-canvas {
+  border-radius: var(--radius-lg);
+}

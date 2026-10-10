@@ -1,9 +1,9 @@
 {
   "extends": "@lifeforge/configs/tsconfig/module.json",
   "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2024.Object", "ESNext.Collection"],
     "paths": {
       "@/manifest": ["./manifest.ts"],
-      "@": ["./src/index"],
       "@/*": ["./src/*"]
     }
   },

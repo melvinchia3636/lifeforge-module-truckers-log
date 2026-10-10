@@ -1,25 +1,135 @@
 {
   "title": "ETS2 記錄",
   "description": "記錄《歐洲卡車模擬2》與《美國卡車模擬》的遙測資料。",
+  "subsections": {
+    "dashboard": {
+      "title": "儀表板",
+      "description": "你記錄的卡車駕駛活動概覽。"
+    },
+    "logBook": {
+      "title": "行車日誌",
+      "description": "你接過的每一趟任務，皆由遙測資料記錄。"
+    },
+    "map": {
+      "title": "地圖",
+      "description": "在地圖上檢視記錄的行車路線。"
+    }
+  },
   "empty": {
     "records": {
       "title": "尚無記錄",
       "description": "你的卡車代理所記錄的遙測資料將顯示在這裡。"
+    },
+    "token": {
+      "title": "尚無接入權杖",
+      "description": "產生權杖以開始從你的記錄代理接收遙測資料。"
+    },
+    "dashboard": {
+      "title": "暫無內容",
+      "description": "你的駕駛概覽將很快顯示在這裡。"
+    },
+    "map": {
+      "title": "暫無任務",
+      "description": "記錄的任務將顯示在這裡。"
     }
   },
   "buttons": {
     "ingestToken": "接入權杖",
     "generateToken": "產生權杖",
-    "rotateToken": "輪替權杖"
+    "rotateToken": "輪替權杖",
+    "showInMap": "在地圖中檢視"
+  },
+  "jobs": {
+    "unknownCargo": "未知貨物",
+    "truck": "卡車",
+    "distance": "距離",
+    "duration": "時長",
+    "revenue": "收入",
+    "xp": "經驗",
+    "date": "日期",
+    "status": {
+      "active": "進行中",
+      "delivered": "已完成",
+      "cancelled": "已取消",
+      "interrupted": "已中斷"
+    },
+    "market": {
+      "quick_job": "快速任務",
+      "cargo_market": "貨運市場",
+      "external_contracts": "外部合約"
+    },
+    "game": {
+      "ets2": "歐洲卡車模擬2",
+      "ats": "美國卡車模擬",
+      "unknown": "未知"
+    }
+  },
+  "details": {
+    "origin": "出發地",
+    "destination": "目的地",
+    "sender": "發貨方",
+    "receiver": "收貨方",
+    "status": "狀態",
+    "game": "遊戲",
+    "market": "市場",
+    "special": "特殊運輸",
+    "cargo": "貨物",
+    "units": "單元",
+    "cargoDamage": "貨物損壞",
+    "revenue": "收入",
+    "income": "總收入",
+    "penalty": "罰款",
+    "xp": "經驗",
+    "distance": "距離",
+    "duration": "時長",
+    "started": "開始",
+    "finished": "完成",
+    "planned": "計劃",
+    "recorded": "記錄",
+    "inGame": "遊戲內",
+    "realTime": "現實時間",
+    "truck": "卡車",
+    "plate": "車牌",
+    "avgSpeed": "平均速度",
+    "maxSpeed": "最高速度",
+    "fuel": "燃油消耗",
+    "adblue": "AdBlue 消耗",
+    "idle": "怠速時間",
+    "samples": "遙測樣本",
+    "yes": "是",
+    "automation": "自動化",
+    "autopark": "自動泊車",
+    "autoload": "自動裝卸",
+    "fine": "罰款",
+    "refuel": "加油",
+    "tollgate": "收費站",
+    "ferry": "渡輪",
+    "train": "火車",
+    "sections": {
+      "route": "路線",
+      "overview": "概覽",
+      "cargo": "貨物",
+      "economy": "經濟",
+      "journey": "行程",
+      "events": "事件",
+      "vehicle": "車輛",
+      "driving": "駕駛"
+    }
   },
   "modals": {
+    "jobDetails": {
+      "title": "任務詳情"
+    },
     "ingestToken": {
       "title": "接入權杖",
       "description": "將你的記錄代理指向此伺服器，並使用下方權杖進行驗證。原始權杖僅在產生後顯示一次。",
       "masked": "目前權杖以 ••••{{last4}} 結尾。",
-      "noToken": "尚未產生接入權杖。",
       "revealWarning": "請立即複製此權杖——之後將無法再次查看。",
-      "copied": "權杖已複製到剪貼簿。"
+      "copied": "權杖已複製到剪貼簿。",
+      "rotateConfirm": {
+        "title": "輪替接入權杖？",
+        "description": "產生新權杖會立即作廢目前權杖。任何仍在使用舊權杖的記錄代理將停止上傳，直到更新為止。"
+      }
     }
   }
 }

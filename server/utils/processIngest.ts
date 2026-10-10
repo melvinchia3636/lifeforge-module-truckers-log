@@ -14,93 +14,8 @@ import type { IngestMessage } from './schemas'
 
 export type ModuleDb = PostgresJsDatabase<BuiltModuleSchema<typeof schema>>
 
-type DbTx = Parameters<Parameters<ModuleDb['transaction']>[0]>[0]
-
 /** Age after which an idle active session is considered interrupted. */
 const STALE_MS = Number(process.env.ETS2_RECORD_STALE_MS ?? 10 * 60 * 1000)
-
-function round(value: number, decimals: number): number {
-  const factor = 10 ** decimals
-
-  return Math.round(value * factor) / factor
-}
-
-async function recomputeStats(tx: DbTx, jobId: string): Promise<void> {
-  const job = await tx.query.jobs.findFirst({ where: { id: jobId } })
-
-  if (!job) return
-
-  const windowEnd = job.finished_at?.getTime() ?? Date.now()
-
-  const rows = job.session_id
-    ? await tx.query.samples.findMany({
-        where: {
-          session_id: job.session_id,
-          t_ms: { gte: job.started_at.getTime(), lte: windowEnd }
-        },
-        orderBy: { t_ms: 'asc' }
-      })
-    : []
-
-  const first = rows[0]
-
-  if (!first) {
-    await tx
-      .update(ets2RecordJobs)
-      .set({ sample_count: 0, updated: new Date() })
-      .where(eq(ets2RecordJobs.id, jobId))
-
-    return
-  }
-
-  let maxSpeed = 0
-
-  let minOdo = first.odometer_km
-
-  let maxOdo = first.odometer_km
-
-  let fuelUsed = 0
-
-  let adblueUsed = 0
-
-  let idleMs = 0
-
-  let prev = first
-
-  for (const s of rows) {
-    maxSpeed = Math.max(maxSpeed, s.speed_kmh)
-    minOdo = Math.min(minOdo, s.odometer_km)
-    maxOdo = Math.max(maxOdo, s.odometer_km)
-    fuelUsed += Math.max(0, prev.fuel_l - s.fuel_l)
-    adblueUsed += Math.max(0, prev.adblue_l - s.adblue_l)
-
-    const dt = Math.min(s.t_ms - prev.t_ms, 5000)
-
-    if (prev.engine_on && prev.speed_kmh < 1) idleMs += Math.max(0, dt)
-    prev = s
-  }
-
-  const distance = Math.max(0, maxOdo - minOdo)
-
-  const driveMin = job.delivery_time_min
-
-  const avgSpeed =
-    driveMin !== null && driveMin > 0 ? distance / (driveMin / 60) : null
-
-  await tx
-    .update(ets2RecordJobs)
-    .set({
-      sample_count: rows.length,
-      distance_km: round(distance, 2),
-      max_speed_kmh: round(maxSpeed, 1),
-      avg_speed_kmh: avgSpeed === null ? null : round(avgSpeed, 1),
-      fuel_used_l: round(fuelUsed, 2),
-      adblue_used_l: round(adblueUsed, 3),
-      idle_min: round(idleMs / 60000, 2),
-      updated: new Date()
-    })
-    .where(eq(ets2RecordJobs.id, jobId))
-}
 
 export interface ProcessIngestInput {
   clientId: string
@@ -255,6 +170,28 @@ export async function processIngest(
           })
           .where(eq(ets2RecordSessions.id, current.id))
 
+        // A job may start (and carry the stale pre-swap truck) before the game
+        // loads the truck actually being driven - e.g. a quick job's company
+        // truck. Keep the active job's truck in sync with the frames.
+        if (job && job.truck_id !== (truck_id ?? '')) {
+          const jobGame =
+            job.game === 'unknown' ? (game ?? 'unknown') : job.game
+
+          const jobTruck = {
+            truck_id: truck_id ?? '',
+            truck_name: truck_name ?? '',
+            truck_brand: truck_brand ?? '',
+            truck_plate: truck_plate ?? ''
+          }
+
+          await tx
+            .update(ets2RecordJobs)
+            .set({ game: jobGame, ...jobTruck, updated: new Date() })
+            .where(eq(ets2RecordJobs.id, job.id))
+
+          job = { ...job, game: jobGame, ...jobTruck }
+        }
+
         await tx
           .insert(ets2RecordSamples)
           .values({ session_id: current.id, ...sample })
@@ -310,8 +247,6 @@ export async function processIngest(
           })
           .where(eq(ets2RecordJobs.id, job.id))
 
-        await recomputeStats(tx, job.id)
-
         job = null
 
         continue
@@ -329,8 +264,6 @@ export async function processIngest(
             updated: new Date()
           })
           .where(eq(ets2RecordJobs.id, job.id))
-
-        await recomputeStats(tx, job.id)
 
         job = null
 

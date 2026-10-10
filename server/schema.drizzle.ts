@@ -43,16 +43,16 @@ export const ets2RecordSessions = pgTable('sessions', {
   client_id: text('client_id').notNull().default(''),
   game: gameEnum('game').notNull().default('unknown'),
   status: sessionStatusEnum('status').notNull().default('active'),
-  started_at: timestamp('started_at', { mode: 'date' }).notNull(),
+  started_at: timestamp('started_at', { mode: 'date', withTimezone: true }).notNull(),
   started_game_min: doublePrecision('started_game_min'),
-  finished_at: timestamp('finished_at', { mode: 'date' }),
+  finished_at: timestamp('finished_at', { mode: 'date', withTimezone: true }),
   finished_game_min: doublePrecision('finished_game_min'),
   truck_id: text('truck_id').notNull().default(''),
   truck_name: text('truck_name').notNull().default(''),
   truck_brand: text('truck_brand').notNull().default(''),
   truck_plate: text('truck_plate').notNull().default(''),
-  created: timestamp('created', { mode: 'date' }).defaultNow().notNull(),
-  updated: timestamp('updated', { mode: 'date' }).defaultNow().notNull()
+  created: timestamp('created', { mode: 'date', withTimezone: true }).defaultNow().notNull(),
+  updated: timestamp('updated', { mode: 'date', withTimezone: true }).defaultNow().notNull()
 })
 
 export const ets2RecordJobs = pgTable('jobs', {
@@ -60,9 +60,9 @@ export const ets2RecordJobs = pgTable('jobs', {
   session_id: uuid('session_id').references(() => ets2RecordSessions.id),
   game: gameEnum('game').notNull().default('unknown'),
   status: jobStatusEnum('status').notNull().default('active'),
-  started_at: timestamp('started_at', { mode: 'date' }).notNull(),
+  started_at: timestamp('started_at', { mode: 'date', withTimezone: true }).notNull(),
   started_game_min: doublePrecision('started_game_min'),
-  finished_at: timestamp('finished_at', { mode: 'date' }),
+  finished_at: timestamp('finished_at', { mode: 'date', withTimezone: true }),
   finished_game_min: doublePrecision('finished_game_min'),
   cargo: text('cargo').notNull().default(''),
   cargo_id: text('cargo_id').notNull().default(''),
@@ -81,7 +81,6 @@ export const ets2RecordJobs = pgTable('jobs', {
   unit_mass_kg: doublePrecision('unit_mass_kg').notNull().default(0),
   planned_distance_km: doublePrecision('planned_distance_km'),
   delivered_distance_km: doublePrecision('delivered_distance_km'),
-  distance_km: doublePrecision('distance_km'),
   revenue: integer('revenue').notNull().default(0),
   income: integer('income').notNull().default(0),
   penalty: integer('penalty').notNull().default(0),
@@ -90,18 +89,12 @@ export const ets2RecordJobs = pgTable('jobs', {
   autopark: boolean('autopark').notNull().default(false),
   autoload: boolean('autoload').notNull().default(false),
   delivery_time_min: doublePrecision('delivery_time_min'),
-  avg_speed_kmh: doublePrecision('avg_speed_kmh'),
-  max_speed_kmh: doublePrecision('max_speed_kmh'),
-  fuel_used_l: doublePrecision('fuel_used_l').notNull().default(0),
-  adblue_used_l: doublePrecision('adblue_used_l').notNull().default(0),
-  idle_min: doublePrecision('idle_min').notNull().default(0),
-  sample_count: integer('sample_count').notNull().default(0),
   truck_id: text('truck_id').notNull().default(''),
   truck_name: text('truck_name').notNull().default(''),
   truck_brand: text('truck_brand').notNull().default(''),
   truck_plate: text('truck_plate').notNull().default(''),
-  created: timestamp('created', { mode: 'date' }).defaultNow().notNull(),
-  updated: timestamp('updated', { mode: 'date' }).defaultNow().notNull()
+  created: timestamp('created', { mode: 'date', withTimezone: true }).defaultNow().notNull(),
+  updated: timestamp('updated', { mode: 'date', withTimezone: true }).defaultNow().notNull()
 })
 
 export const ets2RecordSamples = pgTable('samples', {
@@ -139,7 +132,7 @@ export const ets2RecordEvents = pgTable('events', {
   game_min: doublePrecision('game_min').notNull().default(0),
   amount: integer('amount').notNull().default(0),
   detail: text('detail').notNull().default(''),
-  created: timestamp('created', { mode: 'date' }).defaultNow().notNull()
+  created: timestamp('created', { mode: 'date', withTimezone: true }).defaultNow().notNull()
 })
 
 export const ets2RecordSettings = pgTable('settings', {
@@ -150,9 +143,9 @@ export const ets2RecordSettings = pgTable('settings', {
   ingest_token_last4: varchar('ingest_token_last4', { length: 8 })
     .notNull()
     .default(''),
-  ingest_token_created: timestamp('ingest_token_created', { mode: 'date' }),
-  created: timestamp('created', { mode: 'date' }).defaultNow().notNull(),
-  updated: timestamp('updated', { mode: 'date' }).defaultNow().notNull()
+  ingest_token_created: timestamp('ingest_token_created', { mode: 'date', withTimezone: true }),
+  created: timestamp('created', { mode: 'date', withTimezone: true }).defaultNow().notNull(),
+  updated: timestamp('updated', { mode: 'date', withTimezone: true }).defaultNow().notNull()
 })
 
 export const tables = {
