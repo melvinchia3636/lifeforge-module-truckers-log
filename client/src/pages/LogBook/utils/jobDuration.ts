@@ -11,8 +11,9 @@ export function formatDuration(minutes: number): string {
 }
 
 /**
- * In-game duration of a job, in minutes. Prefers the game-clock span; falls back
- * to the SDK's delivery-time field when the recorded start is a 0 sentinel.
+ * In-game duration of a job, in minutes, from the game-clock span. Returns null
+ * when the recorded start is a 0 sentinel (the SDK's job start wasn't available),
+ * since the SDK's `delivery_time_min` tracks real time rather than the game clock.
  */
 export function jobGameDurationMin(job: Job): number | null {
   if (
@@ -23,5 +24,5 @@ export function jobGameDurationMin(job: Job): number | null {
     return job.finished_game_min - job.started_game_min
   }
 
-  return job.delivery_time_min
+  return null
 }

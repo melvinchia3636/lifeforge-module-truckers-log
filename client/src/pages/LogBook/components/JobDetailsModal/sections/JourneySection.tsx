@@ -15,15 +15,15 @@ function JourneySection() {
 
   const distance = jobDistance(job)
 
-  // The game-clock span is the actual in-game elapsed time. `delivery_time_min`
-  // (the SDK's "delivery time") doesn't track it, so it's only a fallback when
-  // the recorded start is missing (a 0 sentinel).
+  // The game-clock span is the actual in-game elapsed time. The SDK's
+  // `delivery_time_min` tracks real time, so it isn't used as a fallback - the
+  // in-game line is simply omitted when the recorded start is a 0 sentinel.
   const gameMin =
     job.started_game_min != null &&
     job.started_game_min > 0 &&
     job.finished_game_min != null
       ? job.finished_game_min - job.started_game_min
-      : job.delivery_time_min
+      : null
 
   const realMin = job.finished_at
     ? dayjs(job.finished_at).diff(job.started_at, 'minute')
