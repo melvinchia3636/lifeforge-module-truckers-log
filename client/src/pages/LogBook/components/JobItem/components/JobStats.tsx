@@ -33,7 +33,7 @@ function JobStats() {
     {
       icon: 'tabler:road',
       label: t('jobs.distance'),
-      value: distance != null ? `${distance} km` : '—'
+      value: distance != null ? `${distance.toFixed(2)} km` : '—'
     },
     {
       icon: 'tabler:clock',

@@ -1,5 +1,5 @@
 import { useModuleTranslation } from '@lifeforge/localization'
-import { Flex, Text, WithQueryData } from '@lifeforge/ui'
+import { Stack, Text, WithQueryData } from '@lifeforge/ui'
 
 import { currencyFor } from '@/constants/jobMeta'
 import { forgeAPI } from '@/manifest'
@@ -30,17 +30,17 @@ function EventsSection() {
           icon: EVENT_ICONS[event.kind] ?? 'tabler:flag',
           label: event.kind,
           children: (
-            <Flex align="center" gap="sm" justify={{ sm: 'end' }} wrap="wrap">
+            <Stack align={{ sm: 'end' }} gap="xs">
+              {event.detail && <EventDetail detail={event.detail} />}
               {event.amount !== 0 && (
-                <Text align={{ sm: 'right' }} color="dangerous">
+                <Text align={{ sm: 'right' }} color="dangerous" size="sm">
                   {`-${currency}${Math.abs(event.amount).toLocaleString()}`}
                 </Text>
               )}
-              {event.detail && <EventDetail detail={event.detail} />}
               {event.amount === 0 && !event.detail && (
                 <Text align={{ sm: 'right' }}>{t('details.yes')}</Text>
               )}
-            </Flex>
+            </Stack>
           )
         }))
 

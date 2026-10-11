@@ -16,13 +16,13 @@ export const STATUS_ICONS: Record<string, string> = {
 
 export const MARKET_COLORS: Record<string, ColorValue> = {
   quick_job: 'amber-500',
-  cargo_market: 'blue-500',
+  freight_market: 'blue-500',
   external_contracts: 'purple-500'
 }
 
 export const MARKET_ICONS: Record<string, string> = {
   quick_job: 'tabler:bolt',
-  cargo_market: 'tabler:building-warehouse',
+  freight_market: 'tabler:building-warehouse',
   external_contracts: 'tabler:world'
 }
 

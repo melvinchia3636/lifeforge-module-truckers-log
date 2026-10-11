@@ -37,7 +37,8 @@
     "ingestToken": "接入權杖",
     "generateToken": "產生權杖",
     "rotateToken": "輪替權杖",
-    "showInMap": "在地圖中檢視"
+    "showInMap": "在地圖中檢視",
+    "autoRefresh": "自動重新整理"
   },
   "jobs": {
     "unknownCargo": "未知貨物",
@@ -55,7 +56,7 @@
     },
     "market": {
       "quick_job": "快速任務",
-      "cargo_market": "貨運市場",
+      "freight_market": "貨運市場",
       "external_contracts": "外部合約"
     },
     "game": {

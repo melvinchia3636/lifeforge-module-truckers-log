@@ -37,7 +37,8 @@
     "ingestToken": "Token Masukan",
     "generateToken": "Jana Token",
     "rotateToken": "Putar Token",
-    "showInMap": "Papar dalam Peta"
+    "showInMap": "Papar dalam Peta",
+    "autoRefresh": "Muat Semula Automatik"
   },
   "jobs": {
     "unknownCargo": "Kargo tidak diketahui",
@@ -55,7 +56,7 @@
     },
     "market": {
       "quick_job": "Kerja Pantas",
-      "cargo_market": "Pasaran Kargo",
+      "freight_market": "Pasaran Kargo",
       "external_contracts": "Kontrak Luaran"
     },
     "game": {

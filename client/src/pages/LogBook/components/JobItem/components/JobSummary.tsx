@@ -13,7 +13,7 @@ function JobSummary() {
   return (
     <Flex align="start" gap="md" minWidth="0" pl="md" position="relative">
       <Box
-        bg="custom-500"
+        bg={MARKET_COLORS[job.job_market] ?? 'custom-500'}
         bottom="0"
         left="0"
         position="absolute"

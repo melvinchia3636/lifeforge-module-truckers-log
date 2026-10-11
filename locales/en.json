@@ -37,7 +37,8 @@
     "ingestToken": "Ingest Token",
     "generateToken": "Generate Token",
     "rotateToken": "Rotate Token",
-    "showInMap": "Show in Map"
+    "showInMap": "Show in Map",
+    "autoRefresh": "Auto Refresh"
   },
   "jobs": {
     "unknownCargo": "Unknown cargo",
@@ -55,7 +56,7 @@
     },
     "market": {
       "quick_job": "Quick Job",
-      "cargo_market": "Cargo Market",
+      "freight_market": "Cargo Market",
       "external_contracts": "External Contracts"
     },
     "game": {

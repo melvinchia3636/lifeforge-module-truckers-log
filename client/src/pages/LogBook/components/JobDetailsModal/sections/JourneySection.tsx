@@ -31,10 +31,10 @@ function JourneySection() {
 
   const subDistances = [
     job.planned_distance_km != null
-      ? `${t('details.planned')} ${job.planned_distance_km} km`
+      ? `${t('details.planned')} ${job.planned_distance_km.toFixed(2)} km`
       : null,
     job.distance_km != null
-      ? `${t('details.recorded')} ${job.distance_km} km`
+      ? `${t('details.recorded')} ${job.distance_km.toFixed(2)} km`
       : null
   ]
     .filter(Boolean)
@@ -47,7 +47,7 @@ function JourneySection() {
       children: (
         <Stack align={{ sm: 'end' }} gap="xs">
           <Text align={{ sm: 'right' }}>
-            {distance != null ? `${distance} km` : '—'}
+            {distance != null ? `${distance.toFixed(2)} km` : '—'}
           </Text>
           {subDistances && (
             <Text align={{ sm: 'right' }} color="muted" size="sm">
