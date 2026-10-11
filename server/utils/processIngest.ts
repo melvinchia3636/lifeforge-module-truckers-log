@@ -1,7 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 
-import type { BuiltModuleSchema } from '@lifeforge/module-registry'
+import type { BuiltModuleSchema } from '@lifeforge/drizzle'
 
 import * as schema from '../schema.drizzle'
 import {

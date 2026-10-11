@@ -34,7 +34,7 @@
     "@lifeforge/drizzle": "workspace:*",
     "@lifeforge/federation": "workspace:*",
     "@lifeforge/localization": "workspace:*",
-    "@lifeforge/module-registry": "workspace:*",
+    "@lifeforge/module-runtime": "workspace:*",
     "@lifeforge/server-utils": "workspace:*",
     "@lifeforge/ui": "workspace:*"
   }
