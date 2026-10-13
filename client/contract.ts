@@ -1198,6 +1198,9 @@ export const contract = {
             },
             "idle_min": {
               "type": "number"
+            },
+            "mergeable_count": {
+              "type": "number"
             }
           },
           "required": [
@@ -1246,7 +1249,8 @@ export const contract = {
             "avg_speed_kmh",
             "fuel_used_l",
             "adblue_used_l",
-            "idle_min"
+            "idle_min",
+            "mergeable_count"
           ],
           "additionalProperties": false
         }
@@ -1562,6 +1566,9 @@ export const contract = {
                   },
                   "idle_min": {
                     "type": "number"
+                  },
+                  "mergeable_count": {
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -1610,7 +1617,8 @@ export const contract = {
                   "avg_speed_kmh",
                   "fuel_used_l",
                   "adblue_used_l",
-                  "idle_min"
+                  "idle_min",
+                  "mergeable_count"
                 ],
                 "additionalProperties": false
               }
@@ -1634,6 +1642,44 @@ export const contract = {
             "perPage",
             "totalItems",
             "totalPages"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "merge": {
+      "method": "post",
+      "description": "Merge a delivered job with its consecutive interrupted predecessors.",
+      "noAuth": false,
+      "encrypted": true,
+      "isDownloadable": false,
+      "media": null,
+      "input": {
+        "body": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "output": {
+        "OK": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "merged": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "merged"
           ],
           "additionalProperties": false
         }

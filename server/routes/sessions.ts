@@ -39,6 +39,13 @@ const TELEPORT_UNITS_PER_SEC = 250
 /** Segments this small are stationary clusters (e.g. the pre-teleport moment). */
 const MIN_SEGMENT_UNITS = 100
 
+/**
+ * A break longer than this in the recording means the game wasn't streaming
+ * (e.g. a job that was interrupted and later resumed in a new session). Cut the
+ * route there so the two halves aren't joined by a straight line.
+ */
+const MAX_GAP_SECONDS = 60
+
 function segmentExtent(points: { u: [number, number] }[]): number {
   let minX = Infinity
   let minZ = Infinity
@@ -214,8 +221,13 @@ export const route = forge
               seconds
             : Infinity
 
-        if (unitsPerSec > TELEPORT_UNITS_PER_SEC) {
+        const isGap = seconds > MAX_GAP_SECONDS
+
+        if (isGap || unitsPerSec > TELEPORT_UNITS_PER_SEC) {
+          // Ferry/train crossings are only detected within a continuous stream;
+          // a recording gap is never one.
           const crossedByFerry =
+            !isGap &&
             prev.g > 0 &&
             point.g > 0 &&
             ferryGameMins.some(g => g >= prev.g && g <= point.g)

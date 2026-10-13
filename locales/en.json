@@ -38,7 +38,8 @@
     "generateToken": "Generate Token",
     "rotateToken": "Rotate Token",
     "showInMap": "Show in Map",
-    "autoRefresh": "Auto Refresh"
+    "autoRefresh": "Auto Refresh",
+    "mergePrevious": "Merge Previous Interrupted Jobs"
   },
   "jobs": {
     "unknownCargo": "Unknown cargo",
@@ -120,6 +121,11 @@
   "modals": {
     "jobDetails": {
       "title": "Job Details"
+    },
+    "mergeJob": {
+      "title": "Merge Previous Interrupted Jobs?",
+      "description": "This permanently deletes {{count}} interrupted job record(s) and folds their route and stats into this delivered job. This cannot be undone.",
+      "success": "Merged {{count}} interrupted job(s)."
     },
     "ingestToken": {
       "title": "Ingest Token",

@@ -38,7 +38,8 @@
     "generateToken": "生成令牌",
     "rotateToken": "轮换令牌",
     "showInMap": "在地图中查看",
-    "autoRefresh": "自动刷新"
+    "autoRefresh": "自动刷新",
+    "mergePrevious": "合并先前中断的任务"
   },
   "jobs": {
     "unknownCargo": "未知货物",
@@ -120,6 +121,11 @@
   "modals": {
     "jobDetails": {
       "title": "任务详情"
+    },
+    "mergeJob": {
+      "title": "合并先前中断的任务？",
+      "description": "这将永久删除 {{count}} 条中断的任务记录，并将其路线与统计数据并入此已完成任务。此操作无法撤销。",
+      "success": "已合并 {{count}} 个中断任务。"
     },
     "ingestToken": {
       "title": "接入令牌",

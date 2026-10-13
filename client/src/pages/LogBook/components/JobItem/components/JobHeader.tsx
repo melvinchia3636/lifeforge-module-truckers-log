@@ -4,6 +4,7 @@ import { Flex, TagChip } from '@lifeforge/ui'
 import { STATUS_COLORS, STATUS_ICONS } from '@/constants/jobMeta'
 
 import { useJobItemContext } from '../contexts/JobItemContext'
+import JobContextMenu from './JobContextMenu'
 import JobSummary from './JobSummary'
 
 function JobHeader() {
@@ -19,6 +20,7 @@ function JobHeader() {
           icon={STATUS_ICONS[job.status]}
           label={t(`jobs.status.${job.status}`)}
         />
+        <JobContextMenu />
       </Flex>
     </Flex>
   )

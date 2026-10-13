@@ -38,7 +38,8 @@
     "generateToken": "產生權杖",
     "rotateToken": "輪替權杖",
     "showInMap": "在地圖中檢視",
-    "autoRefresh": "自動重新整理"
+    "autoRefresh": "自動重新整理",
+    "mergePrevious": "合併先前中斷的任務"
   },
   "jobs": {
     "unknownCargo": "未知貨物",
@@ -120,6 +121,11 @@
   "modals": {
     "jobDetails": {
       "title": "任務詳情"
+    },
+    "mergeJob": {
+      "title": "合併先前中斷的任務？",
+      "description": "這將永久刪除 {{count}} 筆中斷的任務記錄，並將其路線與統計資料併入此已完成任務。此操作無法復原。",
+      "success": "已合併 {{count}} 個中斷任務。"
     },
     "ingestToken": {
       "title": "接入權杖",

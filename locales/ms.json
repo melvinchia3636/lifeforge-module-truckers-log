@@ -38,7 +38,8 @@
     "generateToken": "Jana Token",
     "rotateToken": "Putar Token",
     "showInMap": "Papar dalam Peta",
-    "autoRefresh": "Muat Semula Automatik"
+    "autoRefresh": "Muat Semula Automatik",
+    "mergePrevious": "Gabungkan Kerja Tergendala Sebelumnya"
   },
   "jobs": {
     "unknownCargo": "Kargo tidak diketahui",
@@ -120,6 +121,11 @@
   "modals": {
     "jobDetails": {
       "title": "Butiran Kerja"
+    },
+    "mergeJob": {
+      "title": "Gabungkan Kerja Tergendala Sebelumnya?",
+      "description": "Ini akan memadamkan {{count}} rekod kerja tergendala secara kekal dan menggabungkan laluan serta statistiknya ke dalam kerja yang dihantar ini. Tindakan ini tidak boleh dibatalkan.",
+      "success": "{{count}} kerja tergendala digabungkan."
     },
     "ingestToken": {
       "title": "Token Masukan",

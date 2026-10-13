@@ -5,6 +5,7 @@ import z from 'zod'
 import forge from '../forge'
 import { ets2RecordJobs, ets2RecordSamples } from '../schema.drizzle'
 import { computeJobStats } from '../utils/jobStats'
+import { mergeableCountsFor, mergeJob } from '../utils/jobMerge'
 
 const DEFAULT_PER_PAGE = 20
 
@@ -15,7 +16,8 @@ const jobStatsShape = {
   avg_speed_kmh: z.number().nullable(),
   fuel_used_l: z.number(),
   adblue_used_l: z.number(),
-  idle_min: z.number()
+  idle_min: z.number(),
+  mergeable_count: z.number()
 }
 
 const jobDto = createSelectSchema(ets2RecordJobs).extend(jobStatsShape)
@@ -130,10 +132,13 @@ export const list = forge
       samplesBySession.set(sample.session_id, bucket)
     }
 
+    const mergeableCounts = await mergeableCountsFor(db, rows)
+
     return response.ok({
       items: rows.map(job => ({
         ...job,
-        ...computeJobStats(windowSamples(job, samplesBySession))
+        ...computeJobStats(windowSamples(job, samplesBySession)),
+        mergeable_count: mergeableCounts.get(job.id) ?? 0
       })),
       page: parsedPage,
       perPage: parsedPerPage,
@@ -177,5 +182,42 @@ export const get = forge
       sample => sample.t_ms >= start && sample.t_ms <= end
     )
 
-    return response.ok({ ...job, ...computeJobStats(window) })
+    const mergeableCounts = await mergeableCountsFor(db, [job])
+
+    return response.ok({
+      ...job,
+      ...computeJobStats(window),
+      mergeable_count: mergeableCounts.get(job.id) ?? 0
+    })
+  })
+
+export const merge = forge
+  .mutation({
+    description:
+      'Merge a delivered job with its consecutive interrupted predecessors.',
+    input: {
+      body: z.object({
+        id: forge.existsIn(z.string(), ets2RecordJobs)
+      })
+    },
+    output: {
+      OK: z.object({
+        merged: z.number()
+      })
+    }
+  })
+  .callback(async ({ db, body: { id }, response }) => {
+    const job = await db.query.jobs.findFirst({ where: { id } })
+
+    if (!job) {
+      return response.notFound()
+    }
+
+    if (job.status !== 'delivered') {
+      return response.badRequest('Only delivered jobs can be merged into')
+    }
+
+    const merged = await mergeJob(db, job)
+
+    return response.ok({ merged })
   })
