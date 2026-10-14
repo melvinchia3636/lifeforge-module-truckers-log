@@ -10,6 +10,10 @@
       "title": "Buku Log",
       "description": "Setiap kerja yang anda ambil, direkodkan daripada telemetri."
     },
+    "gallery": {
+      "title": "Galeri",
+      "description": "Tangkapan skrin yang anda ambil dalam permainan, beserta tempat dan masa."
+    },
     "map": {
       "title": "Peta",
       "description": "Lihat laluan yang direkodkan pada peta."
@@ -28,6 +32,10 @@
       "title": "Tiada Apa-apa Lagi",
       "description": "Gambaran pemanduan anda akan muncul di sini tidak lama lagi."
     },
+    "gallery": {
+      "title": "Tiada Tangkapan Skrin Lagi",
+      "description": "Tangkapan skrin yang dirakam oleh agen anda akan muncul di sini."
+    },
     "map": {
       "title": "Tiada Kerja Lagi",
       "description": "Kerja yang direkodkan akan muncul di sini."
@@ -39,7 +47,8 @@
     "rotateToken": "Putar Token",
     "showInMap": "Papar dalam Peta",
     "autoRefresh": "Muat Semula Automatik",
-    "mergePrevious": "Gabungkan Kerja Tergendala Sebelumnya"
+    "mergePrevious": "Gabungkan Kerja Tergendala Sebelumnya",
+    "deleteScreenshot": "Padam Tangkapan Skrin"
   },
   "jobs": {
     "unknownCargo": "Kargo tidak diketahui",
@@ -66,6 +75,11 @@
       "unknown": "Tidak diketahui"
     }
   },
+  "screenshots": {
+    "unavailable": "Imej tidak tersedia",
+    "noLocation": "Tiada lokasi",
+    "deleted": "Tangkapan skrin dipadam"
+  },
   "details": {
     "origin": "Asal",
     "destination": "Destinasi",
@@ -86,6 +100,9 @@
     "duration": "Tempoh",
     "started": "Mula",
     "finished": "Tamat",
+    "captured": "Diambil",
+    "location": "Lokasi",
+    "resolution": "Resolusi",
     "planned": "dirancang",
     "recorded": "direkodkan",
     "inGame": "dalam permainan",
@@ -115,12 +132,20 @@
       "journey": "Perjalanan",
       "events": "Peristiwa",
       "vehicle": "Kenderaan",
-      "driving": "Pemanduan"
+      "driving": "Pemanduan",
+      "screenshots": "Tangkapan Skrin"
     }
   },
   "modals": {
     "jobDetails": {
       "title": "Butiran Kerja"
+    },
+    "screenshot": {
+      "title": "Tangkapan Skrin"
+    },
+    "deleteScreenshot": {
+      "title": "Padam Tangkapan Skrin?",
+      "description": "Ini akan memadamkan tangkapan skrin dan imej tersimpannya secara kekal. Tindakan ini tidak boleh dibatalkan."
     },
     "mergeJob": {
       "title": "Gabungkan Kerja Tergendala Sebelumnya?",

@@ -7,7 +7,13 @@ import JobHeader from './components/JobHeader'
 import JobStats from './components/JobStats'
 import { JobItemProvider } from './contexts/JobItemContext'
 
-function JobItem({ job }: { job: Job }) {
+function JobItem({
+  job,
+  showDetails = true
+}: {
+  job: Job
+  showDetails?: boolean
+}) {
   const { open } = useModalStore()
 
   return (
@@ -18,7 +24,7 @@ function JobItem({ job }: { job: Job }) {
         onClick={() => open(JobDetailsModal, { id: job.id })}
       >
         <JobHeader />
-        <JobStats />
+        {showDetails && <JobStats />}
       </Card>
     </JobItemProvider>
   )

@@ -11,6 +11,7 @@ import EventsSection from './sections/EventsSection'
 import JourneySection from './sections/JourneySection'
 import OverviewSection from './sections/OverviewSection'
 import RouteSection from './sections/RouteSection'
+import ScreenshotsSection from './sections/ScreenshotsSection'
 import VehicleSection from './sections/VehicleSection'
 
 const NAMESPACE = 'apps.melvinchia3636--truckers-log'
@@ -41,6 +42,7 @@ function JobDetailsModal({
               <EconomySection />
               <JourneySection />
               <EventsSection />
+              <ScreenshotsSection />
               <VehicleSection />
               <DrivingSection />
             </Stack>

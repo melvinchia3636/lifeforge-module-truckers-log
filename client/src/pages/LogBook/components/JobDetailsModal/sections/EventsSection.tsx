@@ -1,5 +1,5 @@
 import { useModuleTranslation } from '@lifeforge/localization'
-import { Stack, Text, WithQueryData } from '@lifeforge/ui'
+import { Flex, Icon, Stack, Text, WithQueryData } from '@lifeforge/ui'
 
 import { currencyFor } from '@/constants/jobMeta'
 import { forgeAPI } from '@/manifest'
@@ -37,6 +37,16 @@ function EventsSection() {
                   {`-${currency}${Math.abs(event.amount).toLocaleString()}`}
                 </Text>
               )}
+              {event.kind === 'tollgate' &&
+                event.x != null &&
+                event.z != null && (
+                  <Flex align="center" gap="xs">
+                    <Icon color="muted" icon="tabler:map-pin" size="0.9rem" />
+                    <Text color="muted" size="sm">
+                      {`${event.x.toFixed(0)}, ${event.z.toFixed(0)}`}
+                    </Text>
+                  </Flex>
+                )}
               {event.amount === 0 && !event.detail && (
                 <Text align={{ sm: 'right' }}>{t('details.yes')}</Text>
               )}

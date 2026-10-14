@@ -33,6 +33,7 @@
     "@lifeforge/configs": "workspace:*",
     "@lifeforge/drizzle": "workspace:*",
     "@lifeforge/federation": "workspace:*",
+    "@lifeforge/file-storage": "workspace:*",
     "@lifeforge/localization": "workspace:*",
     "@lifeforge/module-runtime": "workspace:*",
     "@lifeforge/server-utils": "workspace:*",

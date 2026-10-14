@@ -2,6 +2,7 @@ import { forgeRouter, writeContractFileToClient } from '@lifeforge/server-utils'
 
 import * as eventsRoutes from './routes/events'
 import * as jobsRoutes from './routes/jobs'
+import * as screenshotsRoutes from './routes/screenshots'
 import * as sessionsRoutes from './routes/sessions'
 import * as settingsRoutes from './routes/settings'
 import * as telemetryRoutes from './routes/telemetry'
@@ -13,6 +14,7 @@ const routes = forgeRouter({
   sessions: sessionsRoutes,
   jobs: jobsRoutes,
   events: eventsRoutes,
+  screenshots: screenshotsRoutes,
   tiles: tilesRoutes
 })
 

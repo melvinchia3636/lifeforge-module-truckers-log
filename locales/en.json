@@ -10,6 +10,10 @@
       "title": "Log Book",
       "description": "Every job you've taken, recorded from telemetry."
     },
+    "gallery": {
+      "title": "Gallery",
+      "description": "Screenshots you took in-game, with where and when."
+    },
     "map": {
       "title": "Map",
       "description": "View your recorded routes on the map."
@@ -28,6 +32,10 @@
       "title": "Nothing Here Yet",
       "description": "Your driving overview will appear here soon."
     },
+    "gallery": {
+      "title": "No Screenshots Yet",
+      "description": "Screenshots captured by your recording agent will appear here."
+    },
     "map": {
       "title": "No Jobs Yet",
       "description": "Recorded jobs will appear here."
@@ -39,7 +47,8 @@
     "rotateToken": "Rotate Token",
     "showInMap": "Show in Map",
     "autoRefresh": "Auto Refresh",
-    "mergePrevious": "Merge Previous Interrupted Jobs"
+    "mergePrevious": "Merge Previous Interrupted Jobs",
+    "deleteScreenshot": "Delete Screenshot"
   },
   "jobs": {
     "unknownCargo": "Unknown cargo",
@@ -66,6 +75,11 @@
       "unknown": "Unknown"
     }
   },
+  "screenshots": {
+    "unavailable": "Image unavailable",
+    "noLocation": "No location",
+    "deleted": "Screenshot deleted"
+  },
   "details": {
     "origin": "Origin",
     "destination": "Destination",
@@ -86,6 +100,9 @@
     "duration": "Duration",
     "started": "Started",
     "finished": "Finished",
+    "captured": "Captured",
+    "location": "Location",
+    "resolution": "Resolution",
     "planned": "planned",
     "recorded": "recorded",
     "inGame": "in-game",
@@ -115,12 +132,20 @@
       "journey": "Journey",
       "events": "Events",
       "vehicle": "Vehicle",
-      "driving": "Driving"
+      "driving": "Driving",
+      "screenshots": "Screenshots"
     }
   },
   "modals": {
     "jobDetails": {
       "title": "Job Details"
+    },
+    "screenshot": {
+      "title": "Screenshot"
+    },
+    "deleteScreenshot": {
+      "title": "Delete Screenshot?",
+      "description": "This permanently removes the screenshot and its stored image. This cannot be undone."
     },
     "mergeJob": {
       "title": "Merge Previous Interrupted Jobs?",

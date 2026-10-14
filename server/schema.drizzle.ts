@@ -1,4 +1,4 @@
-import { type RelationsBuilder } from 'drizzle-orm'
+import { type RelationsBuilder, sql } from 'drizzle-orm'
 import {
   bigint,
   boolean,
@@ -7,6 +7,7 @@ import {
   pgEnum,
   text,
   timestamp,
+  uniqueIndex,
   uuid,
   varchar
 } from 'drizzle-orm/pg-core'
@@ -135,8 +136,39 @@ export const ets2RecordEvents = pgTable('events', {
   created: timestamp('created', { mode: 'date', withTimezone: true }).defaultNow().notNull()
 })
 
-export const ets2RecordSettings = pgTable('settings', {
+export const ets2RecordScreenshots = pgTable('screenshots', {
   id: uuid('id').defaultRandom().primaryKey(),
+  session_id: uuid('session_id').references(() => ets2RecordSessions.id),
+  job_id: uuid('job_id').references(() => ets2RecordJobs.id),
+  client_id: text('client_id').notNull().default(''),
+  game: gameEnum('game').notNull().default('unknown'),
+  captured_at: timestamp('captured_at', { mode: 'date', withTimezone: true }).notNull(),
+  game_min: doublePrecision('game_min'),
+  x: doublePrecision('x'),
+  y: doublePrecision('y'),
+  z: doublePrecision('z'),
+  heading_deg: doublePrecision('heading_deg'),
+  speed_kmh: doublePrecision('speed_kmh'),
+  truck_id: text('truck_id').notNull().default(''),
+  truck_name: text('truck_name').notNull().default(''),
+  truck_brand: text('truck_brand').notNull().default(''),
+  truck_plate: text('truck_plate').notNull().default(''),
+  filename: text('filename').notNull().default(''),
+  mime: text('mime').notNull().default(''),
+  size_bytes: integer('size_bytes').notNull().default(0),
+  width: integer('width'),
+  height: integer('height'),
+  file_key: text('file_key').notNull().default(''),
+  content_hash: text('content_hash'),
+  created: timestamp('created', { mode: 'date', withTimezone: true }).defaultNow().notNull(),
+  updated: timestamp('updated', { mode: 'date', withTimezone: true }).defaultNow().notNull()
+}, table => [
+  uniqueIndex('truckers_log_screenshots_client_hash_unq')
+    .on(table.client_id, table.content_hash)
+    .where(sql`${table.content_hash} is not null`)
+])
+
+export const ets2RecordSettings = pgTable('settings', {  id: uuid('id').defaultRandom().primaryKey(),
   ingest_token_hash: varchar('ingest_token_hash', { length: 64 })
     .notNull()
     .default(''),
@@ -153,6 +185,7 @@ export const tables = {
   jobs: ets2RecordJobs,
   samples: ets2RecordSamples,
   events: ets2RecordEvents,
+  screenshots: ets2RecordScreenshots,
   settings: ets2RecordSettings
 }
 
@@ -160,14 +193,16 @@ export const relations = (r: RelationsBuilder<typeof tables>) => ({
   sessions: {
     jobs: r.many.jobs(),
     samples: r.many.samples(),
-    events: r.many.events()
+    events: r.many.events(),
+    screenshots: r.many.screenshots()
   },
   jobs: {
     session: r.one.sessions({
       from: r.jobs.session_id,
       to: r.sessions.id
     }),
-    events: r.many.events()
+    events: r.many.events(),
+    screenshots: r.many.screenshots()
   },
   samples: {
     session: r.one.sessions({
@@ -182,6 +217,16 @@ export const relations = (r: RelationsBuilder<typeof tables>) => ({
     }),
     job: r.one.jobs({
       from: r.events.job_id,
+      to: r.jobs.id
+    })
+  },
+  screenshots: {
+    session: r.one.sessions({
+      from: r.screenshots.session_id,
+      to: r.sessions.id
+    }),
+    job: r.one.jobs({
+      from: r.screenshots.job_id,
       to: r.jobs.id
     })
   }

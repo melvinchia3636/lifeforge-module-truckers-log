@@ -4,6 +4,7 @@ import {
   ets2RecordEvents,
   ets2RecordJobs,
   ets2RecordSamples,
+  ets2RecordScreenshots,
   ets2RecordSessions
 } from '../schema.drizzle'
 import type { ModuleDb } from './processIngest'
@@ -208,6 +209,11 @@ export async function mergeJob(db: ModuleDb, target: JobRow): Promise<number> {
         .update(ets2RecordEvents)
         .set({ session_id: targetSessionId ?? null, job_id: target.id })
         .where(eq(ets2RecordEvents.job_id, candidate.id))
+
+      await tx
+        .update(ets2RecordScreenshots)
+        .set({ session_id: targetSessionId ?? null, job_id: target.id })
+        .where(eq(ets2RecordScreenshots.job_id, candidate.id))
     }
 
     const earliest = candidates.reduce((acc, candidate) =>

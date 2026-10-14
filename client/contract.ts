@@ -1781,6 +1781,26 @@ export const contract = {
               "created": {
                 "type": "string",
                 "format": "date-time"
+              },
+              "x": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "z": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
               }
             },
             "required": [
@@ -1791,10 +1811,852 @@ export const contract = {
               "game_min",
               "amount",
               "detail",
-              "created"
+              "created",
+              "x",
+              "z"
             ],
             "additionalProperties": false
           }
+        }
+      }
+    }
+  },
+  "screenshots": {
+    "get": {
+      "method": "get",
+      "description": "Get a single recorded screenshot by id.",
+      "noAuth": false,
+      "encrypted": true,
+      "isDownloadable": false,
+      "media": null,
+      "input": {
+        "query": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "output": {
+        "OK": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "session_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "job_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "client_id": {
+              "type": "string"
+            },
+            "game": {
+              "type": "string",
+              "enum": [
+                "ets2",
+                "ats",
+                "unknown"
+              ]
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "game_min": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -140737488355328,
+                  "maximum": 140737488355327
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "x": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -140737488355328,
+                  "maximum": 140737488355327
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "y": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -140737488355328,
+                  "maximum": 140737488355327
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "z": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -140737488355328,
+                  "maximum": 140737488355327
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "heading_deg": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -140737488355328,
+                  "maximum": 140737488355327
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "speed_kmh": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -140737488355328,
+                  "maximum": 140737488355327
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "truck_id": {
+              "type": "string"
+            },
+            "truck_name": {
+              "type": "string"
+            },
+            "truck_brand": {
+              "type": "string"
+            },
+            "truck_plate": {
+              "type": "string"
+            },
+            "filename": {
+              "type": "string"
+            },
+            "mime": {
+              "type": "string"
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": -2147483648,
+              "maximum": 2147483647
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "file_key": {
+              "type": "string"
+            },
+            "content_hash": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "lon": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lat": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "file": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "originalName": {
+                      "type": "string"
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "number"
+                    },
+                    "thumbs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "size": {
+                            "type": "string"
+                          },
+                          "key": {
+                            "type": "string"
+                          },
+                          "width": {
+                            "type": "number"
+                          },
+                          "height": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "size",
+                          "key",
+                          "width",
+                          "height"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "originalName",
+                    "mimeType",
+                    "size",
+                    "thumbs"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "session_id",
+            "job_id",
+            "client_id",
+            "game",
+            "captured_at",
+            "game_min",
+            "x",
+            "y",
+            "z",
+            "heading_deg",
+            "speed_kmh",
+            "truck_id",
+            "truck_name",
+            "truck_brand",
+            "truck_plate",
+            "filename",
+            "mime",
+            "size_bytes",
+            "width",
+            "height",
+            "file_key",
+            "content_hash",
+            "created",
+            "updated",
+            "lon",
+            "lat",
+            "file"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "list": {
+      "method": "get",
+      "description": "List recorded screenshots with optional filters.",
+      "noAuth": false,
+      "encrypted": true,
+      "isDownloadable": false,
+      "media": null,
+      "input": {
+        "query": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "jobId": {
+              "type": "string"
+            },
+            "sessionId": {
+              "type": "string"
+            },
+            "game": {
+              "type": "string",
+              "enum": [
+                "ets2",
+                "ats",
+                "unknown"
+              ]
+            },
+            "from": {
+              "type": "string"
+            },
+            "to": {
+              "type": "string"
+            },
+            "page": {
+              "type": "string"
+            },
+            "perPage": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "output": {
+        "OK": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  },
+                  "session_id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "uuid",
+                        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "job_id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "uuid",
+                        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "client_id": {
+                    "type": "string"
+                  },
+                  "game": {
+                    "type": "string",
+                    "enum": [
+                      "ets2",
+                      "ats",
+                      "unknown"
+                    ]
+                  },
+                  "captured_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "game_min": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -140737488355328,
+                        "maximum": 140737488355327
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "x": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -140737488355328,
+                        "maximum": 140737488355327
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "y": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -140737488355328,
+                        "maximum": 140737488355327
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "z": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -140737488355328,
+                        "maximum": 140737488355327
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "heading_deg": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -140737488355328,
+                        "maximum": 140737488355327
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "speed_kmh": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -140737488355328,
+                        "maximum": 140737488355327
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "truck_id": {
+                    "type": "string"
+                  },
+                  "truck_name": {
+                    "type": "string"
+                  },
+                  "truck_brand": {
+                    "type": "string"
+                  },
+                  "truck_plate": {
+                    "type": "string"
+                  },
+                  "filename": {
+                    "type": "string"
+                  },
+                  "mime": {
+                    "type": "string"
+                  },
+                  "size_bytes": {
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
+                  },
+                  "width": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "height": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "file_key": {
+                    "type": "string"
+                  },
+                  "content_hash": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "created": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "lon": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "lat": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "file": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "originalName": {
+                            "type": "string"
+                          },
+                          "mimeType": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "number"
+                          },
+                          "thumbs": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "size": {
+                                  "type": "string"
+                                },
+                                "key": {
+                                  "type": "string"
+                                },
+                                "width": {
+                                  "type": "number"
+                                },
+                                "height": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "size",
+                                "key",
+                                "width",
+                                "height"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "originalName",
+                          "mimeType",
+                          "size",
+                          "thumbs"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "session_id",
+                  "job_id",
+                  "client_id",
+                  "game",
+                  "captured_at",
+                  "game_min",
+                  "x",
+                  "y",
+                  "z",
+                  "heading_deg",
+                  "speed_kmh",
+                  "truck_id",
+                  "truck_name",
+                  "truck_brand",
+                  "truck_plate",
+                  "filename",
+                  "mime",
+                  "size_bytes",
+                  "width",
+                  "height",
+                  "file_key",
+                  "content_hash",
+                  "created",
+                  "updated",
+                  "lon",
+                  "lat",
+                  "file"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "page": {
+              "type": "number"
+            },
+            "perPage": {
+              "type": "number"
+            },
+            "totalItems": {
+              "type": "number"
+            },
+            "totalPages": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "items",
+            "page",
+            "perPage",
+            "totalItems",
+            "totalPages"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "remove": {
+      "method": "post",
+      "description": "Delete a recorded screenshot and its stored image.",
+      "noAuth": false,
+      "encrypted": true,
+      "isDownloadable": false,
+      "media": null,
+      "input": {
+        "body": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "output": {
+        "NO_CONTENT": true
+      }
+    },
+    "upload": {
+      "method": "post",
+      "description": "Upload an in-game screenshot with its telemetry metadata, recorded by the agent.",
+      "noAuth": true,
+      "encrypted": false,
+      "isDownloadable": false,
+      "media": {
+        "file": {
+          "optional": false
+        }
+      },
+      "input": {
+        "body": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "clientId": {
+              "type": "string"
+            },
+            "metadata": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "token",
+            "clientId",
+            "metadata"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "output": {
+        "OK": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "file": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "originalName": {
+                      "type": "string"
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "number"
+                    },
+                    "thumbs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "size": {
+                            "type": "string"
+                          },
+                          "key": {
+                            "type": "string"
+                          },
+                          "width": {
+                            "type": "number"
+                          },
+                          "height": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "size",
+                          "key",
+                          "width",
+                          "height"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "originalName",
+                    "mimeType",
+                    "size",
+                    "thumbs"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "duplicate": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "file",
+            "duplicate"
+          ],
+          "additionalProperties": false
         }
       }
     }

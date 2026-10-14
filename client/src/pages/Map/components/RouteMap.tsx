@@ -16,6 +16,7 @@ import { IconLoader } from './IconLoader'
 import { FitBoundsToRoute } from './FitBoundsToRoute'
 import { RouteLayers } from './RouteLayers'
 import { RouteMarkers } from './RouteMarkers'
+import { ScreenshotMarkers } from './ScreenshotMarkers'
 import './mapCorners.css'
 
 export const mapStyleNoSprite = {
@@ -29,9 +30,13 @@ export function RouteMap({
   route = {
     type: 'FeatureCollection',
     features: []
-  }
+  },
+  screenshotJobId,
+  screenshotRefetchInterval
 }: {
   route?: GeoJSON.FeatureCollection
+  screenshotJobId?: string
+  screenshotRefetchInterval?: number | false
 }) {
   const tileRootUrl = `${forgeAPI.tiles.get.endpoint}?file=`
 
@@ -74,6 +79,10 @@ export function RouteMap({
         />
         <RouteLayers color={derivedThemeColor} route={route} />
         <RouteMarkers route={route} />
+        <ScreenshotMarkers
+          jobId={screenshotJobId}
+          refetchInterval={screenshotRefetchInterval}
+        />
         <IconLoader map={map} />
         <FitBoundsToRoute map={map} route={route} />
         <NavigationControl visualizePitch={true} />

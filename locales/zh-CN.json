@@ -10,6 +10,10 @@
       "title": "行车日志",
       "description": "你接过的每一趟任务，均由遥测数据记录。"
     },
+    "gallery": {
+      "title": "图库",
+      "description": "你在游戏中拍摄的截图，包含地点与时间。"
+    },
     "map": {
       "title": "地图",
       "description": "在地图上查看记录的行车路线。"
@@ -28,6 +32,10 @@
       "title": "暂无内容",
       "description": "你的驾驶概览将很快显示在这里。"
     },
+    "gallery": {
+      "title": "暂无截图",
+      "description": "你的录制代理拍摄的截图将显示在这里。"
+    },
     "map": {
       "title": "暂无任务",
       "description": "记录的任务将显示在这里。"
@@ -39,7 +47,8 @@
     "rotateToken": "轮换令牌",
     "showInMap": "在地图中查看",
     "autoRefresh": "自动刷新",
-    "mergePrevious": "合并先前中断的任务"
+    "mergePrevious": "合并先前中断的任务",
+    "deleteScreenshot": "删除截图"
   },
   "jobs": {
     "unknownCargo": "未知货物",
@@ -66,6 +75,11 @@
       "unknown": "未知"
     }
   },
+  "screenshots": {
+    "unavailable": "图片不可用",
+    "noLocation": "无位置",
+    "deleted": "截图已删除"
+  },
   "details": {
     "origin": "出发地",
     "destination": "目的地",
@@ -86,6 +100,9 @@
     "duration": "时长",
     "started": "开始",
     "finished": "完成",
+    "captured": "拍摄于",
+    "location": "位置",
+    "resolution": "分辨率",
     "planned": "计划",
     "recorded": "记录",
     "inGame": "游戏内",
@@ -115,12 +132,20 @@
       "journey": "行程",
       "events": "事件",
       "vehicle": "车辆",
-      "driving": "驾驶"
+      "driving": "驾驶",
+      "screenshots": "截图"
     }
   },
   "modals": {
     "jobDetails": {
       "title": "任务详情"
+    },
+    "screenshot": {
+      "title": "截图"
+    },
+    "deleteScreenshot": {
+      "title": "删除截图？",
+      "description": "这将永久删除该截图及其存储的图片。此操作无法撤销。"
     },
     "mergeJob": {
       "title": "合并先前中断的任务？",

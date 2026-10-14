@@ -29,6 +29,8 @@ function Map() {
 
   const job = jobQuery.data
 
+  const refetchInterval = autoRefresh ? AUTO_REFRESH_MS : false
+
   const routeQuery = useQuery({
     ...forgeAPI.sessions.route
       .input({
@@ -38,7 +40,7 @@ function Map() {
       })
       .queryOptions(),
     enabled: Boolean(job?.session_id),
-    refetchInterval: autoRefresh ? AUTO_REFRESH_MS : false
+    refetchInterval
   })
 
   return (
@@ -67,11 +69,18 @@ function Map() {
             job.session_id ? (
               <WithQuery key={job.id} query={routeQuery}>
                 {route => (
-                  <RouteMap route={route as GeoJSON.FeatureCollection} />
+                  <RouteMap
+                    route={route as GeoJSON.FeatureCollection}
+                    screenshotJobId={jobId}
+                    screenshotRefetchInterval={refetchInterval}
+                  />
                 )}
               </WithQuery>
             ) : (
-              <RouteMap />
+              <RouteMap
+                screenshotJobId={jobId}
+                screenshotRefetchInterval={refetchInterval}
+              />
             )
           }
         </WithQuery>
