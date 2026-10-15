@@ -2,22 +2,19 @@ import { useQuery } from '@tanstack/react-query'
 import { useLocation, useNavigate } from 'react-router'
 
 import {
+  Box,
   Card,
   Flex,
   Grid,
   Icon,
   Text,
   colorWithOpacity,
+  surface,
   useModalStore
 } from '@lifeforge/ui'
 
 import { forgeAPI } from '@/manifest'
-
 import ScreenshotViewerModal from '@/pages/Gallery/components/ScreenshotViewerModal'
-import {
-  SCREENSHOT_THUMB,
-  screenshotUrl
-} from '@/pages/Gallery/components/utils'
 
 import Section from '../components/Section'
 import {
@@ -68,7 +65,6 @@ function ScreenshotsSection() {
         width="100%"
       >
         {visible.map((screenshot, index) => {
-          const url = screenshotUrl(screenshot, SCREENSHOT_THUMB)
           const isOverflowTile =
             hasOverflow && index === visible.length - 1 && hiddenCount > 0
 
@@ -77,29 +73,44 @@ function ScreenshotsSection() {
               key={screenshot.id}
               isInteractive
               aspectRatio="1"
+              bg={surface.light}
               overflow="hidden"
               p="none"
               position="relative"
+              style={{ isolation: 'isolate' }}
               onClick={
                 isOverflowTile
                   ? showAll
                   : () => open(ScreenshotViewerModal, { screenshot })
               }
             >
-              {url ? (
-                <img
-                  alt={screenshot.filename}
-                  src={url}
-                  style={{
-                    display: 'block',
-                    height: '100%',
-                    objectFit: 'cover',
-                    width: '100%'
-                  }}
+              <Box
+                asChild
+                left="50%"
+                position="absolute"
+                style={{ transform: 'translate(-50%, -50%)' }}
+                top="50%"
+                zIndex="-1"
+              >
+                <Icon
+                  color={{ base: 'bg-200', dark: 'bg-700' }}
+                  icon="tabler:photo"
+                  size="3em"
                 />
-              ) : (
-                <Icon color="muted" icon="tabler:photo-off" />
-              )}
+              </Box>
+              <img
+                alt=""
+                src={forgeAPI.getMedia({
+                  key: screenshot.file_key,
+                  thumb: '400x0'
+                })}
+                style={{
+                  display: 'block',
+                  height: '100%',
+                  objectFit: 'cover',
+                  width: '100%'
+                }}
+              />
               {isOverflowTile && (
                 <Flex
                   align="center"

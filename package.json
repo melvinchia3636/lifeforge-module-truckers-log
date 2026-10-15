@@ -22,7 +22,8 @@
     "maplibre-gl": "^5.18.0",
     "pmtiles": "^4.4.0",
     "proj4": "^2.9.2",
-    "react-map-gl": "^8.0.4"
+    "react-map-gl": "^8.0.4",
+    "react-photo-album": "^3.6.0"
   },
   "devDependencies": {
     "@types/color": "^3.0.6",

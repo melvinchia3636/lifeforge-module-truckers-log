@@ -1,35 +1,14 @@
 import dayjs from 'dayjs'
 
 import { useModuleTranslation } from '@lifeforge/localization'
-import {
-  Box,
-  Card,
-  ModalHeader,
-  Stack,
-  Text,
-  surface,
-  usePersonalization
-} from '@lifeforge/ui'
+import { Card, Text, surface, usePersonalization } from '@lifeforge/ui'
 
+import type { Screenshot } from '@/pages/Gallery'
 import DetailRow from '@/pages/LogBook/components/JobDetailsModal/components/DetailRow'
 
-import { SCREENSHOT_PREVIEW, type Screenshot, screenshotUrl } from './utils'
-
-const NAMESPACE = 'apps.melvinchia3636--truckers-log'
-
-function ScreenshotViewerModal({
-  data: { screenshot },
-  onClose
-}: {
-  data: { screenshot: Screenshot }
-  onClose: () => void
-}) {
+function ScreenshotDetails({ screenshot }: { screenshot: Screenshot }) {
   const { t } = useModuleTranslation()
   const { language } = usePersonalization()
-
-  const url =
-    screenshotUrl(screenshot, SCREENSHOT_PREVIEW) ??
-    screenshotUrl(screenshot, undefined)
 
   const truck = [screenshot.truck_brand, screenshot.truck_name]
     .filter(Boolean)
@@ -103,43 +82,17 @@ function ScreenshotViewerModal({
   ]
 
   return (
-    <Stack maxWidth="90vw" minWidth={{ base: 'unset', md: '50vw' }}>
-      <ModalHeader
-        icon="tabler:photo"
-        namespace={NAMESPACE}
-        title="screenshot"
-        onClose={onClose}
-      />
-      <Box bg="bg-950" maxHeight="65vh" overflow="hidden" r="lg">
-        {url ? (
-          <img
-            alt={screenshot.filename}
-            src={url}
-            style={{
-              display: 'block',
-              maxHeight: '65vh',
-              objectFit: 'contain',
-              width: '100%'
-            }}
-          />
-        ) : (
-          <Text align="center" color="muted" p="xl">
-            {t('screenshots.unavailable')}
-          </Text>
-        )}
-      </Box>
-      <Card
-        bg={surface.light}
-        gap="none"
-        mt="lg"
-        overflow="hidden"
-        p="none"
-        width="100%"
-      >
-        <DetailRow rows={rows} />
-      </Card>
-    </Stack>
+    <Card
+      bg={surface.light}
+      gap="none"
+      mt="lg"
+      overflow="hidden"
+      p="none"
+      width="100%"
+    >
+      <DetailRow rows={rows} />
+    </Card>
   )
 }
 
-export default ScreenshotViewerModal
+export default ScreenshotDetails
