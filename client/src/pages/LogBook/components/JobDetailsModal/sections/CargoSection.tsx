@@ -1,5 +1,8 @@
 import { useModuleTranslation } from '@lifeforge/localization'
-import { TagChip, Text } from '@lifeforge/ui'
+import { Box, Flex, TagChip, Text } from '@lifeforge/ui'
+import { useEffect, useRef, useState } from 'react'
+
+import CargoPreview from '@/pages/LogBook/components/CargoPreview'
 
 import DetailRow from '../components/DetailRow'
 import Section from '../components/Section'
@@ -8,6 +11,26 @@ import { useJobDetails } from '../contexts/JobDetailsContext'
 function CargoSection() {
   const job = useJobDetails()
   const { t } = useModuleTranslation()
+  const contentRef = useRef<HTMLElement>(null)
+  const [contentHeight, setContentHeight] = useState(0)
+
+  useEffect(() => {
+    const element = contentRef.current
+    if (!element) return
+
+    const observer = new ResizeObserver(entries => {
+      const height = entries[0]?.contentRect.height
+
+      if (height !== undefined) {
+        setContentHeight(height)
+      }
+    })
+
+    observer.observe(element)
+    setContentHeight(element.getBoundingClientRect().height)
+
+    return () => observer.disconnect()
+  }, [])
 
   const tonnage =
     job.cargo_mass_kg > 0 ? `${(job.cargo_mass_kg / 1000).toFixed(1)} t` : null
@@ -55,7 +78,15 @@ function CargoSection() {
 
   return (
     <Section title="cargo">
-      <DetailRow rows={rows} />
+      <Flex
+        align={{ base: 'stretch', sm: 'center' }}
+        direction={{ base: 'column', sm: 'row' }}
+      >
+        <CargoPreview desktopSize={contentHeight} fill job={job} />
+        <Box ref={contentRef} flex="1" minWidth="0">
+          <DetailRow rows={rows} />
+        </Box>
+      </Flex>
     </Section>
   )
 }

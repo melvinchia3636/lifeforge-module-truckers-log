@@ -1,7 +1,9 @@
 import { useModuleTranslation } from '@lifeforge/localization'
 import { Box, Flex, Icon, Stack, Text } from '@lifeforge/ui'
+import { useEffect, useRef, useState } from 'react'
 
 import { GAME_ICONS, MARKET_COLORS, MARKET_ICONS } from '@/constants/jobMeta'
+import CargoPreview from '@/pages/LogBook/components/CargoPreview'
 
 import { useJobItemContext } from '../contexts/JobItemContext'
 import CityLabel from './CityLabel'
@@ -15,6 +17,26 @@ function isUnknownCompany(name: string) {
 function JobSummary() {
   const job = useJobItemContext()
   const { t } = useModuleTranslation()
+  const infoRef = useRef<HTMLElement>(null)
+  const [infoHeight, setInfoHeight] = useState(0)
+
+  useEffect(() => {
+    const element = infoRef.current
+    if (!element) return
+
+    const observer = new ResizeObserver(entries => {
+      const height = entries[0]?.contentRect.height
+
+      if (height !== undefined) {
+        setInfoHeight(height)
+      }
+    })
+
+    observer.observe(element)
+    setInfoHeight(element.getBoundingClientRect().height)
+
+    return () => observer.disconnect()
+  }, [])
 
   const senderUnknown = isUnknownCompany(job.comp_src)
   const receiverUnknown = isUnknownCompany(job.comp_dst)
@@ -30,7 +52,8 @@ function JobSummary() {
         top="0"
         width="0.25rem"
       />
-      <Stack gap="xs" minWidth="0">
+      <CargoPreview job={job} size="4.5rem" squareSize={infoHeight} />
+      <Stack ref={infoRef} gap="xs" minWidth="0">
         <Flex align="center" gap="xs" minWidth="0">
           <Icon
             color={MARKET_COLORS[job.job_market]}
