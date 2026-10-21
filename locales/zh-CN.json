@@ -52,6 +52,7 @@
   },
   "jobs": {
     "unknownCargo": "未知货物",
+    "unknownCompany": "未知",
     "truck": "卡车",
     "distance": "距离",
     "duration": "时长",

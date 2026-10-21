@@ -52,6 +52,7 @@
   },
   "jobs": {
     "unknownCargo": "Kargo tidak diketahui",
+    "unknownCompany": "Tidak diketahui",
     "truck": "Lori",
     "distance": "Jarak",
     "duration": "Tempoh",

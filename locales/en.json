@@ -52,6 +52,7 @@
   },
   "jobs": {
     "unknownCargo": "Unknown cargo",
+    "unknownCompany": "Unknown",
     "truck": "Truck",
     "distance": "Distance",
     "duration": "Duration",

@@ -1,23 +1,44 @@
 import { useModuleTranslation } from '@lifeforge/localization'
 import { Box, Flex, Icon, Stack, Text } from '@lifeforge/ui'
+import type { CSSProperties } from 'react'
 
 import { GAME_ICONS, MARKET_COLORS, MARKET_ICONS } from '@/constants/jobMeta'
 
 import { useJobItemContext } from '../contexts/JobItemContext'
 import CityLabel from './CityLabel'
 
+/** Red/white hazard stripes used by the game for special transport cargo. */
+const HAZARD_STRIPES: CSSProperties = {
+  backgroundImage:
+    'repeating-linear-gradient(135deg, #dc2626 0 4px, #ffffff 4px 8px)'
+}
+
+function isUnknownCompany(name: string) {
+  const trimmed = name.trim()
+
+  return trimmed === '' || trimmed.toLowerCase() === 'unknown'
+}
+
 function JobSummary() {
   const job = useJobItemContext()
   const { t } = useModuleTranslation()
 
+  const senderUnknown = isUnknownCompany(job.comp_src)
+  const receiverUnknown = isUnknownCompany(job.comp_dst)
+
   return (
     <Flex align="start" gap="md" minWidth="0" pl="md" position="relative">
       <Box
-        bg={MARKET_COLORS[job.job_market] ?? 'custom-500'}
+        bg={
+          job.special_job
+            ? undefined
+            : (MARKET_COLORS[job.job_market] ?? 'custom-500')
+        }
         bottom="0"
         left="0"
         position="absolute"
         r="full"
+        style={job.special_job ? HAZARD_STRIPES : undefined}
         top="0"
         width="0.25rem"
       />
@@ -58,15 +79,17 @@ function JobSummary() {
           <Icon color="muted" icon="tabler:arrow-right" />
           <CityLabel cityId={job.city_dst_id} name={job.city_dst} />
         </Flex>
-        <Flex align="center" gap="xs" minWidth="0">
-          <Text truncate color="muted" size="sm">
-            {job.comp_src}
-          </Text>
-          <Icon color="muted" icon="tabler:arrow-right" />
-          <Text truncate color="muted" size="sm">
-            {job.comp_dst}
-          </Text>
-        </Flex>
+        {!(senderUnknown && receiverUnknown) && (
+          <Flex align="center" gap="xs" minWidth="0">
+            <Text truncate color="muted" size="sm">
+              {senderUnknown ? t('jobs.unknownCompany') : job.comp_src}
+            </Text>
+            <Icon color="muted" icon="tabler:arrow-right" />
+            <Text truncate color="muted" size="sm">
+              {receiverUnknown ? t('jobs.unknownCompany') : job.comp_dst}
+            </Text>
+          </Flex>
+        )}
       </Stack>
     </Flex>
   )
