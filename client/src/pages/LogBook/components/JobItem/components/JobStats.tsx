@@ -23,7 +23,7 @@ function JobStats() {
   const truck = [job.truck_brand, job.truck_name].filter(Boolean).join(' ')
 
   const distance =
-    job.delivered_distance_km ?? job.distance_km ?? job.planned_distance_km
+    job.delivered_distance_km || job.distance_km || job.planned_distance_km
 
   const durationMin = jobGameDurationMin(job)
 
