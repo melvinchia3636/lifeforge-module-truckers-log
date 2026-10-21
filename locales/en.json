@@ -48,7 +48,8 @@
     "showInMap": "Show in Map",
     "autoRefresh": "Auto Refresh",
     "mergePrevious": "Merge Previous Interrupted Jobs",
-    "deleteScreenshot": "Delete Screenshot"
+    "deleteScreenshot": "Delete Screenshot",
+    "clearInterrupted": "Clear Interrupted Jobs ({{count}})"
   },
   "jobs": {
     "unknownCargo": "Unknown cargo",
@@ -163,6 +164,11 @@
         "title": "Rotate Ingest Token?",
         "description": "Generating a new token immediately invalidates the current one. Any recording agent still using the old token will stop streaming until it is updated."
       }
+    },
+    "clearInterrupted": {
+      "title": "Clear all interrupted jobs?",
+      "description": "This permanently deletes {{count}} interrupted job record(s). Screenshots are kept and only unlinked from their jobs. This cannot be undone.",
+      "success": "Cleared {{count}} interrupted job(s)."
     }
   }
 }

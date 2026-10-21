@@ -931,6 +931,30 @@ export const contract = {
     }
   },
   "jobs": {
+    "clearInterrupted": {
+      "method": "post",
+      "description": "Delete all interrupted jobs, keeping screenshots and only unlinking them.",
+      "noAuth": false,
+      "encrypted": true,
+      "isDownloadable": false,
+      "media": null,
+      "input": {},
+      "output": {
+        "OK": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "cleared": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "cleared"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
     "get": {
       "method": "get",
       "description": "Get a single recorded job by id.",

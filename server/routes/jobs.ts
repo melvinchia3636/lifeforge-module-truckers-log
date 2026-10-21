@@ -3,7 +3,12 @@ import { createSelectSchema } from 'drizzle-orm/zod'
 import z from 'zod'
 
 import forge from '../forge'
-import { ets2RecordJobs, ets2RecordSamples } from '../schema.drizzle'
+import {
+  ets2RecordEvents,
+  ets2RecordJobs,
+  ets2RecordSamples,
+  ets2RecordScreenshots
+} from '../schema.drizzle'
 import { computeJobStats } from '../utils/jobStats'
 import { mergeableCountsFor, mergeJob } from '../utils/jobMerge'
 
@@ -220,4 +225,43 @@ export const merge = forge
     const merged = await mergeJob(db, job)
 
     return response.ok({ merged })
+  })
+
+export const clearInterrupted = forge
+  .mutation({
+    description:
+      'Delete all interrupted jobs, keeping screenshots and only unlinking them.',
+    output: {
+      OK: z.object({
+        cleared: z.number()
+      })
+    }
+  })
+  .callback(async ({ db, response }) => {
+    const rows = await db
+      .select({ id: ets2RecordJobs.id })
+      .from(ets2RecordJobs)
+      .where(eq(ets2RecordJobs.status, 'interrupted'))
+
+    if (rows.length === 0) {
+      return response.ok({ cleared: 0 })
+    }
+
+    const ids = rows.map(row => row.id)
+
+    await db.transaction(async tx => {
+      await tx
+        .update(ets2RecordScreenshots)
+        .set({ job_id: null })
+        .where(inArray(ets2RecordScreenshots.job_id, ids))
+
+      await tx
+        .update(ets2RecordEvents)
+        .set({ job_id: null })
+        .where(inArray(ets2RecordEvents.job_id, ids))
+
+      await tx.delete(ets2RecordJobs).where(inArray(ets2RecordJobs.id, ids))
+    })
+
+    return response.ok({ cleared: ids.length })
   })

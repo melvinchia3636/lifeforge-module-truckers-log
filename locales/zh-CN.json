@@ -48,7 +48,8 @@
     "showInMap": "在地图中查看",
     "autoRefresh": "自动刷新",
     "mergePrevious": "合并先前中断的任务",
-    "deleteScreenshot": "删除截图"
+    "deleteScreenshot": "删除截图",
+    "clearInterrupted": "清除中断任务 ({{count}})"
   },
   "jobs": {
     "unknownCargo": "未知货物",
@@ -163,6 +164,11 @@
         "title": "轮换接入令牌？",
         "description": "生成新令牌会立即作废当前令牌。任何仍在使用旧令牌的记录代理都将停止上传，直到更新为止。"
       }
+    },
+    "clearInterrupted": {
+      "title": "清除所有中断的任务？",
+      "description": "这将永久删除 {{count}} 条中断任务记录。截图会被保留，仅解除与任务的关联。此操作无法撤销。",
+      "success": "已清除 {{count}} 条中断任务。"
     }
   }
 }

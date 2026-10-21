@@ -48,7 +48,8 @@
     "showInMap": "Papar dalam Peta",
     "autoRefresh": "Muat Semula Automatik",
     "mergePrevious": "Gabungkan Kerja Tergendala Sebelumnya",
-    "deleteScreenshot": "Padam Tangkapan Skrin"
+    "deleteScreenshot": "Padam Tangkapan Skrin",
+    "clearInterrupted": "Kosongkan Kerja Tergendala ({{count}})"
   },
   "jobs": {
     "unknownCargo": "Kargo tidak diketahui",
@@ -163,6 +164,11 @@
         "title": "Putar Token Masukan?",
         "description": "Menjana token baharu akan terus membatalkan token semasa. Sebarang agen rakaman yang masih menggunakan token lama akan berhenti menstrim sehingga dikemas kini."
       }
+    },
+    "clearInterrupted": {
+      "title": "Kosongkan semua kerja tergendala?",
+      "description": "Ini akan memadam {{count}} rekod kerja tergendala secara kekal. Tangkapan skrin dikekalkan dan hanya dinyahpaut daripada kerja. Tindakan ini tidak boleh dibatalkan.",
+      "success": "{{count}} kerja tergendala telah dikosongkan."
     }
   }
 }

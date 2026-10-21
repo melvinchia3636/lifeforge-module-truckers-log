@@ -1,12 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { type InferOutput } from '@lifeforge/api'
+import { type InferOutput, useForgeMutation } from '@lifeforge/api'
+import { useModuleTranslation } from '@lifeforge/localization'
 import {
+  ConfirmationModal,
+  ContextMenu,
+  ContextMenuItem,
   EmptyStateScreen,
   ModuleHeader,
   Pagination,
   Scrollbar,
   Stack,
+  toast,
+  useModalStore,
   WithQuery
 } from '@lifeforge/ui'
 
@@ -17,16 +23,78 @@ import useFilter from './hooks/useFilter'
 
 export type Job = InferOutput<typeof forgeAPI.jobs.get>
 
+const NAMESPACE = 'apps.melvinchia3636--truckers-log'
+
 function LogBook() {
+  const { t } = useModuleTranslation()
+  const { open } = useModalStore()
   const { page, updateFilter } = useFilter()
 
   const jobsQuery = useQuery(
     forgeAPI.jobs.list.input({ page: String(page) }).queryOptions()
   )
 
+  const interruptedQuery = useQuery(
+    forgeAPI.jobs.list
+      .input({ status: 'interrupted', perPage: '1' })
+      .queryOptions()
+  )
+
+  const interruptedCount = interruptedQuery.data?.totalItems ?? 0
+
+  const clearMutation = useForgeMutation(forgeAPI.jobs.clearInterrupted, {
+    action: 'delete',
+    queryKey: [
+      forgeAPI.jobs.list.key,
+      forgeAPI.jobs.get.key,
+      forgeAPI.screenshots.list.key
+    ]
+  })
+
+  async function handleClear() {
+    const result = await clearMutation.mutateAsync(undefined)
+
+    toast.success(
+      t('modals.clearInterrupted.success', { count: result.cleared })
+    )
+  }
+
+  function handleClearClick() {
+    open(ConfirmationModal, {
+      title: t('modals.clearInterrupted.title'),
+      description: t('modals.clearInterrupted.description', {
+        count: interruptedCount
+      }),
+      confirmationButton: {
+        children: 'buttons.clearInterrupted',
+        icon: 'tabler:trash',
+        namespace: NAMESPACE,
+        tProps: { count: interruptedCount },
+        dangerous: true
+      },
+      onConfirm: handleClear
+    })
+  }
+
   return (
     <>
-      <ModuleHeader icon="tabler:book" title="Log Book" />
+      <ModuleHeader
+        icon="tabler:book"
+        title="Log Book"
+        trailing={
+          <ContextMenu>
+            <ContextMenuItem
+              dangerous
+              disabled={interruptedCount === 0}
+              icon="tabler:trash"
+              label="clearInterrupted"
+              namespace={NAMESPACE}
+              tProps={{ count: interruptedCount }}
+              onClick={handleClearClick}
+            />
+          </ContextMenu>
+        }
+      />
       <Stack gap="md" height="100%" mb="lg" width="100%">
         <WithQuery query={jobsQuery}>
           {data =>
