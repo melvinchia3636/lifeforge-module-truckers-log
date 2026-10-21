@@ -60,13 +60,6 @@ function OverviewSection() {
         </Flex>
       )
     },
-    job.special_job && {
-      icon: 'tabler:alert-triangle',
-      label: 'special',
-      children: (
-        <TagChip color="#f59e0b" icon="tabler:check" label={t('details.yes')} />
-      )
-    },
     (job.autopark || job.autoload) && {
       icon: 'tabler:robot',
       label: 'automation',

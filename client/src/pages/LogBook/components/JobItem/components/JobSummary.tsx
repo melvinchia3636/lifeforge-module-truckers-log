@@ -1,17 +1,10 @@
 import { useModuleTranslation } from '@lifeforge/localization'
 import { Box, Flex, Icon, Stack, Text } from '@lifeforge/ui'
-import type { CSSProperties } from 'react'
 
 import { GAME_ICONS, MARKET_COLORS, MARKET_ICONS } from '@/constants/jobMeta'
 
 import { useJobItemContext } from '../contexts/JobItemContext'
 import CityLabel from './CityLabel'
-
-/** Red/white hazard stripes used by the game for special transport cargo. */
-const HAZARD_STRIPES: CSSProperties = {
-  backgroundImage:
-    'repeating-linear-gradient(135deg, #dc2626 0 4px, #ffffff 4px 8px)'
-}
 
 function isUnknownCompany(name: string) {
   const trimmed = name.trim()
@@ -29,16 +22,11 @@ function JobSummary() {
   return (
     <Flex align="start" gap="md" minWidth="0" pl="md" position="relative">
       <Box
-        bg={
-          job.special_job
-            ? undefined
-            : (MARKET_COLORS[job.job_market] ?? 'custom-500')
-        }
+        bg={MARKET_COLORS[job.job_market] ?? 'custom-500'}
         bottom="0"
         left="0"
         position="absolute"
         r="full"
-        style={job.special_job ? HAZARD_STRIPES : undefined}
         top="0"
         width="0.25rem"
       />

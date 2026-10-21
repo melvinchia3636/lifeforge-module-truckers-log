@@ -1,5 +1,5 @@
 import { useModuleTranslation } from '@lifeforge/localization'
-import { Text } from '@lifeforge/ui'
+import { TagChip, Text } from '@lifeforge/ui'
 
 import DetailRow from '../components/DetailRow'
 import Section from '../components/Section'
@@ -30,6 +30,13 @@ function CargoSection() {
         <Text align={{ sm: 'right' }}>
           {job.unit_count} × {(job.unit_mass_kg / 1000).toFixed(1)} t
         </Text>
+      )
+    },
+    job.special_job && {
+      icon: 'tabler:alert-triangle',
+      label: 'special',
+      children: (
+        <TagChip color="#f59e0b" icon="tabler:check" label={t('details.yes')} />
       )
     },
     {
