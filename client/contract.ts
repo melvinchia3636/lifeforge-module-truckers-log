@@ -294,6 +294,18 @@ export const contract = {
                           },
                           "truck_plate": {
                             "type": "string"
+                          },
+                          "trailer_body_type": {
+                            "type": "string"
+                          },
+                          "trailer_id": {
+                            "type": "string"
+                          },
+                          "trailer_name": {
+                            "type": "string"
+                          },
+                          "trailer_brand": {
+                            "type": "string"
                           }
                         },
                         "additionalProperties": false
@@ -1149,6 +1161,18 @@ export const contract = {
             "truck_plate": {
               "type": "string"
             },
+            "trailer_body_type": {
+              "type": "string"
+            },
+            "trailer_id": {
+              "type": "string"
+            },
+            "trailer_name": {
+              "type": "string"
+            },
+            "trailer_brand": {
+              "type": "string"
+            },
             "created": {
               "type": "string",
               "format": "date-time"
@@ -1241,6 +1265,10 @@ export const contract = {
             "truck_name",
             "truck_brand",
             "truck_plate",
+            "trailer_body_type",
+            "trailer_id",
+            "trailer_name",
+            "trailer_brand",
             "created",
             "updated",
             "sample_count",
@@ -1517,6 +1545,18 @@ export const contract = {
                   "truck_plate": {
                     "type": "string"
                   },
+                  "trailer_body_type": {
+                    "type": "string"
+                  },
+                  "trailer_id": {
+                    "type": "string"
+                  },
+                  "trailer_name": {
+                    "type": "string"
+                  },
+                  "trailer_brand": {
+                    "type": "string"
+                  },
                   "created": {
                     "type": "string",
                     "format": "date-time"
@@ -1609,6 +1649,10 @@ export const contract = {
                   "truck_name",
                   "truck_brand",
                   "truck_plate",
+                  "trailer_body_type",
+                  "trailer_id",
+                  "trailer_name",
+                  "trailer_brand",
                   "created",
                   "updated",
                   "sample_count",

@@ -30,10 +30,50 @@ function asset(path: string) {
   return `${BASE}${path}`
 }
 
+const TYPE_DEFAULTS: Record<string, string> = {
+  box: 'trailers/box/_default',
+  dumper: 'trailers/dumper/_default',
+  food: 'trailers/food/_default',
+  fuel: 'trailers/fuel/_default',
+  silo: 'trailers/silo/_default',
+  tank: 'trailers/tank/_default'
+}
+
+/** Maps base-game trailer body types to the preview categories we ship. */
+const BODY_TYPE_TO_PREVIEW: Record<string, string> = {
+  box: 'box',
+  curtainside: 'box',
+  dryvan: 'box',
+  insulated: 'box',
+  refrigerated: 'box',
+  livestock: 'box',
+  container: 'flatbed',
+  flatbed: 'flatbed',
+  flatbed_brck: 'flatbed',
+  flatbed_cont: 'flatbed',
+  lowbed: 'flatbed',
+  lowboy: 'flatbed',
+  log: 'flatbed',
+  dumper: 'dumper',
+  silo: 'silo',
+  chemtank: 'tank',
+  gastank: 'tank',
+  foodtank: 'food',
+  fueltank: 'fuel',
+  tank: 'tank',
+  food: 'food',
+  fuel: 'fuel'
+}
+
+function previewType(type: string) {
+  return (TRAILER_SKINS[type]?.length ?? 0) > 0 || type in TYPE_DEFAULTS
+}
+
 export function resolveCargoPreview(
   cargoId: string,
   compSrcId?: string | null,
-  compDstId?: string | null
+  compDstId?: string | null,
+  trailerBodyType?: string | null
 ) {
   const entry = CARGO_PREVIEWS[cargoId]
 
@@ -45,7 +85,14 @@ export function resolveCargoPreview(
     return asset(`${entry.preview}.png`)
   }
 
-  const skins = TRAILER_SKINS[entry.type] ?? []
+  const mappedType = trailerBodyType
+    ? BODY_TYPE_TO_PREVIEW[trailerBodyType.trim().toLowerCase()]
+    : undefined
+  const type =
+    entry.kind === 'trailer' && mappedType && previewType(mappedType)
+      ? mappedType
+      : entry.type
+  const skins = TRAILER_SKINS[type] ?? []
 
   for (const company of [compSrcId, compDstId]) {
     if (!company) continue
@@ -59,5 +106,5 @@ export function resolveCargoPreview(
     }
   }
 
-  return asset(`${entry.preview}.png`)
+  return asset(`${TYPE_DEFAULTS[type] ?? entry.preview}.png`)
 }

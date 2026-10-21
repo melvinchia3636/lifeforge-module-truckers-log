@@ -44,7 +44,11 @@ export const jobStartedSchema = createInsertSchema(ets2RecordJobs).pick({
   truck_id: true,
   truck_name: true,
   truck_brand: true,
-  truck_plate: true
+  truck_plate: true,
+  trailer_body_type: true,
+  trailer_id: true,
+  trailer_name: true,
+  trailer_brand: true
 })
 
 export const jobDeliveredSchema = createInsertSchema(ets2RecordJobs).pick({

@@ -19,7 +19,8 @@ function CargoPreview({
   const src = resolveCargoPreview(
     job.cargo_id,
     job.comp_src_id,
-    job.comp_dst_id
+    job.comp_dst_id,
+    job.trailer_body_type
   )
 
   if (fill) {

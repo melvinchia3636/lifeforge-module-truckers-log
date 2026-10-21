@@ -94,6 +94,10 @@ export const ets2RecordJobs = pgTable('jobs', {
   truck_name: text('truck_name').notNull().default(''),
   truck_brand: text('truck_brand').notNull().default(''),
   truck_plate: text('truck_plate').notNull().default(''),
+  trailer_body_type: text('trailer_body_type').notNull().default(''),
+  trailer_id: text('trailer_id').notNull().default(''),
+  trailer_name: text('trailer_name').notNull().default(''),
+  trailer_brand: text('trailer_brand').notNull().default(''),
   created: timestamp('created', { mode: 'date', withTimezone: true }).defaultNow().notNull(),
   updated: timestamp('updated', { mode: 'date', withTimezone: true }).defaultNow().notNull()
 })
