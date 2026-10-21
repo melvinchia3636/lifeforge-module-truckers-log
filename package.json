@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/melvinchia3636/lifeforge-module-truckers-log.git"
   },
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "author": "Melvin Chia <melvinchia623600@gmail.com>",
   "description": "Record your ETS2 & ATS jobs, routes and stats.",
