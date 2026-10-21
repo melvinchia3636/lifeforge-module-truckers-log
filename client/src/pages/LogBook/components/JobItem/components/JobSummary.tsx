@@ -42,7 +42,14 @@ function JobSummary() {
   const receiverUnknown = isUnknownCompany(job.comp_dst)
 
   return (
-    <Flex align="start" gap="md" minWidth="0" pl="md" position="relative">
+    <Flex
+      align={{ base: 'stretch', sm: 'start' }}
+      direction={{ base: 'column', sm: 'row' }}
+      gap="md"
+      minWidth="0"
+      pl="md"
+      position="relative"
+    >
       <Box
         bg={MARKET_COLORS[job.job_market] ?? 'custom-500'}
         bottom="0"
