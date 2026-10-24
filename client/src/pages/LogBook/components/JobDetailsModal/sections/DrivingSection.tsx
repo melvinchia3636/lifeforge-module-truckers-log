@@ -19,7 +19,7 @@ function DrivingSection() {
       label: 'avgSpeed',
       children: (
         <Text align={{ sm: 'right' }}>
-          {job.avg_speed_kmh != null ? `${job.avg_speed_kmh} km/h` : '—'}
+          {job.avg_speed_kmh != null ? `${job.avg_speed_kmh} km/h` : '-'}
         </Text>
       )
     },
@@ -28,7 +28,7 @@ function DrivingSection() {
       label: 'maxSpeed',
       children: (
         <Text align={{ sm: 'right' }}>
-          {job.max_speed_kmh != null ? `${job.max_speed_kmh} km/h` : '—'}
+          {job.max_speed_kmh != null ? `${job.max_speed_kmh} km/h` : '-'}
         </Text>
       )
     },

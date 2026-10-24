@@ -47,7 +47,7 @@ function JourneySection() {
       children: (
         <Stack align={{ sm: 'end' }} gap="xs">
           <Text align={{ sm: 'right' }}>
-            {distance != null ? `${distance.toFixed(2)} km` : '—'}
+            {distance != null ? `${distance.toFixed(2)} km` : '-'}
           </Text>
           {subDistances && (
             <Text align={{ sm: 'right' }} color="muted" size="sm">
@@ -62,7 +62,7 @@ function JourneySection() {
       label: 'duration',
       children:
         gameMin == null && realMin == null ? (
-          <Text align={{ sm: 'right' }}>—</Text>
+          <Text align={{ sm: 'right' }}>-</Text>
         ) : (
           <Stack align={{ sm: 'end' }} gap="xs">
             {gameMin != null && (
@@ -96,7 +96,7 @@ function JourneySection() {
             ? dayjs(job.finished_at)
                 .locale(language)
                 .format('D MMM YYYY, HH:mm')
-            : '—'}
+            : '-'}
         </Text>
       )
     }

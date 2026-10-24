@@ -18,7 +18,7 @@ function VehicleSection() {
       children: (
         <Flex align="center" gap="sm" justify={{ sm: 'end' }}>
           <Icon icon={brandIcon(job.truck_brand)} />
-          <Text align={{ sm: 'right' }}>{truck || '—'}</Text>
+          <Text align={{ sm: 'right' }}>{truck || '-'}</Text>
         </Flex>
       )
     },

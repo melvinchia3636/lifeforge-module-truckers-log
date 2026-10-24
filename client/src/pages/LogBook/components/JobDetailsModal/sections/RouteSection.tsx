@@ -41,12 +41,12 @@ function RouteSection() {
     {
       icon: 'tabler:building-factory-2',
       label: 'sender',
-      children: <Text>{job.comp_src || '—'}</Text>
+      children: <Text>{job.comp_src || '-'}</Text>
     },
     {
       icon: 'tabler:building-warehouse',
       label: 'receiver',
-      children: <Text>{job.comp_dst || '—'}</Text>
+      children: <Text>{job.comp_dst || '-'}</Text>
     }
   ]
 

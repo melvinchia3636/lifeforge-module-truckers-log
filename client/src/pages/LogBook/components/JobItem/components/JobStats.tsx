@@ -33,12 +33,12 @@ function JobStats() {
     {
       icon: 'tabler:road',
       label: t('jobs.distance'),
-      value: distance != null ? `${distance.toFixed(2)} km` : '—'
+      value: distance != null ? `${distance.toFixed(2)} km` : '-'
     },
     {
       icon: 'tabler:clock',
       label: t('jobs.duration'),
-      value: durationMin != null ? formatDuration(durationMin) : '—'
+      value: durationMin != null ? formatDuration(durationMin) : '-'
     },
     {
       icon: 'tabler:cash',
@@ -53,7 +53,7 @@ function JobStats() {
     {
       icon: 'tabler:truck',
       label: t('jobs.truck'),
-      value: truck || '—',
+      value: truck || '-',
       valueIcon: brandIcon(job.truck_brand)
     },
     {
