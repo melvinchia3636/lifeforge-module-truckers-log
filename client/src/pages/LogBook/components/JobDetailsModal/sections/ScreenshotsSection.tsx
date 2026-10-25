@@ -2,11 +2,10 @@ import { useQuery } from '@tanstack/react-query'
 import { useLocation, useNavigate } from 'react-router'
 
 import {
-  Box,
   Card,
   Flex,
   Grid,
-  Icon,
+  Image,
   Text,
   colorWithOpacity,
   surface,
@@ -84,32 +83,16 @@ function ScreenshotsSection() {
                   : () => open(ScreenshotViewerModal, { screenshot })
               }
             >
-              <Box
-                asChild
-                left="50%"
-                position="absolute"
-                style={{ transform: 'translate(-50%, -50%)' }}
-                top="50%"
-                zIndex="-1"
-              >
-                <Icon
-                  color={{ base: 'bg-200', dark: 'bg-700' }}
-                  icon="tabler:photo"
-                  size="3em"
-                />
-              </Box>
-              <img
+              <Image
                 alt=""
+                fallback="tabler:photo"
+                fit="cover"
+                height="100%"
                 src={forgeAPI.getMedia({
                   key: screenshot.file_key,
                   thumb: '400x0'
                 })}
-                style={{
-                  display: 'block',
-                  height: '100%',
-                  objectFit: 'cover',
-                  width: '100%'
-                }}
+                width="100%"
               />
               {isOverflowTile && (
                 <Flex

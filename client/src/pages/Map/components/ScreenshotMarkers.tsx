@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Marker } from 'react-map-gl/maplibre'
 
-import { Icon, Tooltip, useModalStore } from '@lifeforge/ui'
+import { Icon, Image, Tooltip, useModalStore } from '@lifeforge/ui'
 
 import { forgeAPI } from '@/manifest'
 import ScreenshotViewerModal from '@/pages/Gallery/components/ScreenshotViewerModal'
@@ -69,17 +69,15 @@ export function ScreenshotMarkers(props: {
           if (!item) return null
 
           return (
-            <img
-              alt={item?.filename}
+            <Image
+              alt={item.filename}
+              fallback={null}
+              r="sm"
               src={forgeAPI.getMedia({
                 key: item.file_key,
                 thumb: '400x0'
               })}
-              style={{
-                display: 'block',
-                width: 180,
-                borderRadius: 'var(--radius-sm)'
-              }}
+              width="180px"
             />
           )
         }}

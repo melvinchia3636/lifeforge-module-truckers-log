@@ -1,4 +1,4 @@
-import { Box, surface } from '@lifeforge/ui'
+import { Image, surface } from '@lifeforge/ui'
 
 import { resolveCargoPreview } from '@/lib/cargoPreview'
 import type { Job } from '@/pages/LogBook'
@@ -23,81 +23,47 @@ function CargoPreview({
     job.trailer_body_type
   )
 
-  if (fill) {
-    return (
-      <>
-        <Box
-          bg={surface.light}
-          display={{ base: 'block', sm: 'none' }}
-          m="sm"
-          overflow="hidden"
-          p="xs"
-          r="md"
-          width="calc(100% - 1rem)"
-        >
-          <img
-            alt=""
-            src={src}
-            style={{
-              display: 'block',
-              width: '100%',
-              height: 'auto',
-              objectFit: 'contain'
-            }}
-          />
-        </Box>
-        {desktopSize > 0 && (
-          <Box
-            bg={surface.light}
-            display={{ base: 'none', sm: 'block' }}
-            flexShrink="0"
-            height={`${desktopSize}px`}
-            m="sm"
-            overflow="hidden"
-            p="xs"
-            r="md"
-            width={`${desktopSize}px`}
-          >
-            <img
-              alt=""
-              src={src}
-              style={{
-                display: 'block',
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain'
-              }}
-            />
-          </Box>
-        )}
-      </>
-    )
-  }
-
   const dimension = squareSize > 0 ? `${squareSize}px` : size
 
+  const hasDesktopSize = desktopSize > 0
+
+  const display = fill
+    ? hasDesktopSize
+      ? ('block' as const)
+      : ({ base: 'block', sm: 'none' } as const)
+    : undefined
+
+  const height = fill
+    ? hasDesktopSize
+      ? { sm: `${desktopSize}px` }
+      : undefined
+    : squareSize > 0
+      ? dimension
+      : undefined
+
+  const width = fill
+    ? hasDesktopSize
+      ? { base: 'calc(100% - 1rem)', sm: `${desktopSize}px` }
+      : 'calc(100% - 1rem)'
+    : dimension
+
   return (
-    <Box
-      aspectRatio="1"
+    <Image
+      alt=""
+      aspectRatio={fill ? undefined : '1'}
       bg={surface.light}
+      display={display}
+      fallback={null}
+      fit="contain"
       flexShrink="0"
-      height={squareSize > 0 ? dimension : undefined}
+      height={height}
+      m={fill ? 'sm' : undefined}
       overflow="hidden"
       p="xs"
       r="md"
-      width={dimension}
-    >
-      <img
-        alt=""
-        src={src}
-        style={{
-          display: 'block',
-          width: '100%',
-          height: '100%',
-          objectFit: 'contain'
-        }}
-      />
-    </Box>
+      src={src}
+      width={width}
+    />
   )
 }
 
