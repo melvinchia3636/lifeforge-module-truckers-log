@@ -11,9 +11,9 @@ import {
   Pagination,
   Scrollbar,
   Stack,
+  WithQuery,
   toast,
-  useModalStore,
-  WithQuery
+  useModalStore
 } from '@lifeforge/ui'
 
 import { forgeAPI } from '@/manifest'
@@ -95,7 +95,7 @@ function LogBook() {
           </ContextMenu>
         }
       />
-      <Stack gap="md" height="100%" mb="lg" width="100%">
+      <Stack minHeight="0">
         <WithQuery query={jobsQuery}>
           {data =>
             data.items.length > 0 ? (

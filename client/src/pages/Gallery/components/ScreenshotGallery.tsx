@@ -17,7 +17,7 @@ function ScreenshotGallery({ screenshots }: { screenshots: Screenshot[] }) {
 
   return (
     <Scrollbar>
-      <Box pb="md">
+      <Box>
         <MasonryPhotoAlbum
           columns={containerWidth =>
             Math.max(

@@ -34,7 +34,7 @@ function Gallery() {
   return (
     <>
       <ModuleHeader icon="tabler:photo" title="gallery" />
-      <Stack gap="md" height="100%" mb="lg" width="100%">
+      <Stack minHeight="0">
         {jobQuery.data && <JobItem job={jobQuery.data} showDetails={false} />}
         <WithQuery query={screenshotsQuery}>
           {data =>
