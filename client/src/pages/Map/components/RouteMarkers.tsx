@@ -1,7 +1,7 @@
 import type * as GeoJSON from 'geojson';
 import { Marker } from 'react-map-gl/maplibre';
 
-import { Icon } from '@lifeforge/ui';
+import { Flex, Icon } from '@lifeforge/ui';
 
 export function RouteMarkers(props: {
   route: GeoJSON.FeatureCollection;
@@ -26,22 +26,21 @@ export function RouteMarkers(props: {
             latitude={lat}
             longitude={lon}
           >
-            <div
+            <Flex
+              align="center"
+              height="26px"
+              justify="center"
+              r="full"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 26,
-                height: 26,
-                borderRadius: '9999px',
                 background: color,
                 color: '#fff',
                 border: '2px solid #fff',
                 boxShadow: '0 1px 4px rgba(0, 0, 0, 0.4)',
               }}
+              width="26px"
             >
               <Icon icon={icon} />
-            </div>
+            </Flex>
           </Marker>
         );
       })}

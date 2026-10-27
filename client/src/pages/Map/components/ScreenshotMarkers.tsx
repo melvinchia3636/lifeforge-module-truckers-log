@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Marker } from 'react-map-gl/maplibre'
 
-import { Icon, Image, Tooltip, useModalStore } from '@lifeforge/ui'
+import { Box, Icon, Image, Tooltip, useModalStore } from '@lifeforge/ui'
 
 import { forgeAPI } from '@/manifest'
 import ScreenshotViewerModal from '@/pages/Gallery/components/ScreenshotViewerModal'
@@ -36,7 +36,8 @@ export function ScreenshotMarkers(props: {
           latitude={item.lat ?? 0}
           longitude={item.lon ?? 0}
         >
-          <button
+          <Box
+            as="button"
             data-tooltip-content={item.id}
             data-tooltip-id={TOOLTIP_ID}
             style={{
@@ -57,7 +58,7 @@ export function ScreenshotMarkers(props: {
             onClick={() => open(ScreenshotViewerModal, { screenshot: item })}
           >
             <Icon icon="tabler:camera" />
-          </button>
+          </Box>
         </Marker>
       ))}
       <Tooltip

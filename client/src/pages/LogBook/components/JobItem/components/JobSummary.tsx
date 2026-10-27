@@ -22,6 +22,7 @@ function JobSummary() {
 
   useEffect(() => {
     const element = infoRef.current
+
     if (!element) return
 
     const observer = new ResizeObserver(entries => {

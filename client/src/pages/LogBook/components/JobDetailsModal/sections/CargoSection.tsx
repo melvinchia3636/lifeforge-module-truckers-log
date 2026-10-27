@@ -16,6 +16,7 @@ function CargoSection() {
 
   useEffect(() => {
     const element = contentRef.current
+
     if (!element) return
 
     const observer = new ResizeObserver(entries => {
@@ -82,7 +83,7 @@ function CargoSection() {
         align={{ base: 'stretch', sm: 'center' }}
         direction={{ base: 'column', sm: 'row' }}
       >
-        <CargoPreview desktopSize={contentHeight} fill job={job} />
+        <CargoPreview fill desktopSize={contentHeight} job={job} />
         <Box ref={contentRef} flex="1" minWidth="0">
           <DetailRow rows={rows} />
         </Box>
